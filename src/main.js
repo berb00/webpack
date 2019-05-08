@@ -1,14 +1,16 @@
 import { a } from './js/header'
 import { content } from './js/content'
-import { footer } from './js/footer'
+import  Footer  from './js/footer'
 import Header from './js/header'
 const fn1 = () => {
-  console.log('this is fn1')
   console.log(Header)
-  console.log(content)
-  console.log                                                                                                                                                                                                                 (footer)
+  // console.log(Footr)                                                                                                                                                                                                     (footer)
 }
+
 
 fn1()
 a()
-// alert('this is main.js')
+
+
+const greeter = require('./js/greeter.js');
+document.querySelector("#root").appendChild(greeter());

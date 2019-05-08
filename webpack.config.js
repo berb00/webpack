@@ -1,9 +1,17 @@
 const path = require('path')
 
+// Babel默认只转换新的JavaScript句法，而不转换新的API，比如Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象，以及一些定义在全局对象上的方法（比如Object.assign）都不会转码
+// npm install --save babel-polyfill
+import 'babel-polyfill';
+/**
+ * npm init
+ * npm install --save-dev webpack
+ *  
+ * */
 module.exports = {
 
   // 入口
-  entry: path.resolve(__dirname, './src/main.js'),
+  entry: [path.resolve(__dirname, './src/main.js'), 'babel-polyfill'],
 
   // 出口
   output: {
@@ -11,24 +19,38 @@ module.exports = {
     filename: 'bundle.js'
   },
 
-  // loader
+  // loader: 本质上做的是一个anything to JS的转换
   module: { 
     rules: [
       // { test: /\.txt$/, use: 'raw-loader' },
 
+      // JSON 转换已内置 无需配置
+
       // Babel的安装与配置
       // npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react
+      // babel-loader：在import或加载模块时，对es6代码进行预处理，es6语法转化为es5语法。
+      // babel-core：允许我们去调用babel的api，可以将js代码分析成ast（抽象语法树），方便各个插件分析语法进行相应的处理.
+      // babel-preset-env：指定规范，比如es2015，es2016，es2017，latest，env（包含前面全部）
+      // babel-polyfill：它效仿一个完整的ES2015+环境，使得我们能够使用新的内置对象比如 Promise，静态方法比如Array.from 或者 Object.assign, 实例方法比如 Array.prototype.includes 和生成器函数（提供给你使用 regenerator 插件）。为了达到这一点， polyfill 添加到了全局范围，就像原生类型比如 String 一样。
+      // babel-runtime babel-plugin-transform-runtime：与babel-polyfill作用一样，使用场景不一样。
+      {
+        test: /(\.jsx|\.js)$/, // 用以匹配loaders所处理文件的拓展名的正则表达式
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [ "env"] // 转码规则 presets: [ "env", "react"]
+          }
+        },
+        exclude: /node_modules/, // include/exclude:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）；
+        query: {  // 可以使用query来指定参数，也可以在loader中用和require一样的用法指定参数，如`jade?p1=1`
+          p1: '1'
+        }
+      },
+
       // {
-      //   test: /(\.jsx|\.js)$/,
-      //   use: {
-      //     loader: "babel-loader",
-      //     options: {
-      //       presets: [
-      //         "env", "react"
-      //       ]
-      //     }
-      //   },
-      //   exclude: /node_modules/
+      //   test: /\.css$/,
+      //   loader: 'style!css'             //  loader可以和require用法一样串联
+      //   // loaders: ['style', 'css']    //  也可以用数组指定loader
       // }
     ]
   },
@@ -38,8 +60,9 @@ module.exports = {
     // new HtmlWebpackPlugin({template: './src/index.html'})
   ],
 
-
-  mode: 'development', // production
+  // production   压缩版
+  // development  webpack版
+  mode: 'production', 
 
 
   /*

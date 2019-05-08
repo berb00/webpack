@@ -1,5 +1,5 @@
-let footer = 'this is footer'
+let Footer = 'this is footer'
 
 module.exports = {
-  footer
+  Footer
 }
