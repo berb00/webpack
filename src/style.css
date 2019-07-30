@@ -1,0 +1,14 @@
+@font-face {
+	font-family: 'MyFont';
+	src:  url('./icomoon.woff') format('woff');
+				/* url('./my-font.woff') format('woff'); */
+	font-weight: 600;
+	font-style: normal;
+}
+
+.hello {
+	color: red;
+	background: url('./icon.png');
+	font-family: 'MyFont';
+}
+  
