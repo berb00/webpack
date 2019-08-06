@@ -8,7 +8,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 module.exports = {
   entry: {
     // polyfills: './src/polyfills.js',
-		app: './src/index.js',
+		app: './src/js/index.js',
     // moduleA: './src/moduleA.js',
     // ts: './src/index.ts'
 	},

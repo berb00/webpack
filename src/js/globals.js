@@ -7,7 +7,7 @@ var helpers = {
 function Person (name) {
   this.name = name;
   this.sayName = function () {
-    console.log("my name is ", this.name);
+    console.log("my naxme is ", this.name);
   }
 }
 module.exports = {

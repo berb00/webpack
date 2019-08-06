@@ -1,16 +1,18 @@
-// import _ from 'lodash';
+import _ from 'lodash';
 import 'babel-polyfill';
-import './style.css';
-import Icon from './icon.png';
+
+
+import Icon from '../assets/img/icon.png';
+import '../style/style.css';
 // import Data from './data.xml';
-import Data from './data.json';
+import Data from '../assets/json/data.json';
 import printMe from './print.js';
 import { file, helpers, Person } from './globals.js'; // 全局变量
 
 var person = new Person("berb00");
 person.sayName();
 console.log("global", file, helpers, Person);
-console.log('mode', process.env.NODE_ENV);
+console.log('modeee', process.env.NODE_ENV);
 
 // Assume we are in the context of `window`
 // this.alert('Hmmm, this probably isn\'t a great idea...');
