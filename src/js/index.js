@@ -3,7 +3,13 @@ import 'babel-polyfill';
 
 
 import Icon from '../assets/img/icon.png';
+
+// css
 import '../style/style.css';
+import '../style/less.less';
+import '../style/scss.scss';
+
+
 // import Data from './data.xml';
 import Data from '../assets/json/data.json';
 import printMe from './print.js';
@@ -11,7 +17,7 @@ import { file, helpers, Person } from './globals.js'; // 全局变量
 
 var person = new Person("berb00");
 person.sayName();
-console.log("global", file, helpers, Person);
+console.log("globaldd", file, helpers, Person);
 console.log('modeee', process.env.NODE_ENV);
 
 // Assume we are in the context of `window`
