@@ -565,6 +565,10 @@ module.exports = {
   smoothScroll,
   getScrollPosition,
   size,
-  escapeHTML
+  escapeHTML,
+
+  // Other
+  debounce,
+  throttle
 
 }
