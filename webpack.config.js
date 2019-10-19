@@ -90,12 +90,11 @@ module.exports = {
 					'sass-loader' // scss -> css
 				]
 			},
-			{
-				// babel转换 
+			{ // babel转换 
 				// npm i -D babel-loader @babel/core @babel/preset-env
 				
 				// npm install --save-dev @babel/plugin-proposal-class-properties
-				
+				// npm install --save-dev @babel/plugin-proposal-decorators 装饰器
 				// npm install --save-dev @babel/plugin-transform-runtime
 				// npm install --save @babel/runtime
 				test: /\.js$/,
@@ -103,7 +102,12 @@ module.exports = {
 					loader: 'babel-loader',
 					options: {
 						presets: [
-							'@babel/preset-env'
+							'@babel/preset-env' // es6 ->es5
+						],
+						plugins: [
+							["@babel/plugin-proposal-decorators", { "legacy": true }],
+							["@babel/plugin-proposal-class-properties", { "loose" : true }],
+							'@babel/plugin-transform-runtime'
 						]
 					}
 				},
@@ -182,7 +186,7 @@ module.exports = {
     //   name: 'common' // 指定公共 bundle 的名称。
     // }),
 
-    new webpack.ProvidePlugin({
+    new webpack.ProvidePlugin({ // 在每个模块中都注入	$
       _: 'lodash',
       $: 'jquery'
     }),

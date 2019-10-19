@@ -48,9 +48,9 @@ document.body.appendChild(component());
 dynamicImport();
 function dynamicImport () {
   /* webpackChunkName: "jquery" */
-  return import('jquery').then($ => {
-    console.log("$:", $)
-  }).catch(error => 'An error occurred while loading the component');
+  // return import('jquery').then($ => {
+  //   console.log("$:", $)
+  // }).catch(error => 'An error occurred while loading the component');
 }
 
 function lazyLoad() {
