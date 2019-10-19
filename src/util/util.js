@@ -447,6 +447,32 @@ const escapeHTML = str =>
       }[tag] || tag)
   );
 
+// Other
+// 防抖
+function debounce (fn, delay) {
+  let timer = null;
+  return function () {
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      fn.apply(this, arguments);
+    }, delay);
+  }
+}
+// 节流
+function throttle (fn, delay) {
+  let flag = true;
+  return function () {
+    if (!flag) return;
+    flag = false;
+
+    setTimeout(() => {
+      fn.apply(this, arguments);
+      flag = true;
+    }, delay);
+  }
+}
+
 module.exports = {
   // array
   all,
