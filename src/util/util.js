@@ -570,5 +570,6 @@ module.exports = {
   // Other
   debounce,
   throttle
+  
 
 }
