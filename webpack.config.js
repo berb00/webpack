@@ -7,8 +7,19 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // css抽离
 const OptimizeCss = require('optimize-css-assets-webpack-plugin'); // css压缩 production模式下
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 压缩js 可能和新版本babel-loader不兼容
 
+const CopyWebpackPlugin = require('copy-webpack-plugin'); // 拷贝文件
+
+
+
 module.exports = {
 	mode: 'production',
+
+	watch: true, // 热重载监听build
+	watchOptions: {
+		poll: 1000, // 每秒检查一次变动
+		aggregateTimeout: 500, // 防抖 编辑代码过程中不打包
+		ignored:/node_modules/ // 忽略打包文件
+	},
   entry: {
 		app: path.resolve(__dirname, './src/js/index.js'),
 	},
@@ -23,7 +34,10 @@ module.exports = {
 		// publicPath: '/'
   },
 
-  devtool: 'inline-source-map',
+	// 源码映射 会单独生成一个sourcemap文件 报错时会标识错误行号 可以调试源码(生产环境下代码被压缩为一行无法调试)
+	// eval-source-map 不会产生单独的map文件，但显示报错行列位置
+	// cheap-module-source-map 
+	devtool: 'source-map',
 
 	// 使用 webpack-dev-server (webpack --watch需刷新)
 	// npm install --save-dev webpack-dev-server
@@ -170,15 +184,17 @@ module.exports = {
 
 		// 设定 HtmlWebpackPlugin
 		// npm install --save-dev html-webpack-plugin
+		// 多页应用new多次(需chunks属性)
 		new HtmlWebpackPlugin({ // 打包输出html
 			title: 'Progressive Web Application',
 			template: path.join(__dirname, './src/index.html'),
 			filename: 'index.html',
+			// chunks: ['index'], // 多页应用区分代码块
 			hash: true,
 			minify: {
 				removeAttributeQuotes: true, // 删除模版中的双引号
 				removeComments: true, // 删除空白符与换行符
-				// collapseWhitespace: true, // 压缩成一行
+				collapseWhitespace: true, // 压缩成一行
 				minifyCSS: true // 压缩内联css
 			}
 		}),
@@ -196,14 +212,21 @@ module.exports = {
     new webpack.ProvidePlugin({ // 在每个模块中都注入	$
       _: 'lodash',
       $: 'jquery'
-    }),
+		}),
+		
+		// 文件开头加上作者版权时间等注释
+		new webpack.BannerPlugin('create by berb00'),
 
     new WorkboxPlugin.GenerateSW({
       // 这些选项帮助 ServiceWorkers 快速启用
       // 不允许遗留任何“旧的” ServiceWorkers
       clientsClaim: true,
       skipWaiting: true
-    })
+		}),
+		
+		new CopyWebpackPlugin([
+			{from: './src/util', to: './'}
+		])
 	],
 
 	optimization: { // 优化项

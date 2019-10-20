@@ -17,6 +17,8 @@ import { file, helpers, Person } from './globals.js'; // 全局变量
 
 var person = new Person("berb00");
 person.sayName();
+
+
 console.log("globaldd", file, helpers, Person);
 console.log('modeee', process.env.NODE_ENV);
 
@@ -34,11 +36,13 @@ function component() {
   myIcon.src = Icon;
   element.appendChild(myIcon);
 
+
   btn.innerHTML = 'printMe';
   btn.onclick = printMe;
   element.appendChild(btn);
 
-  console.log(Data);
+  console.log(Data, 1);
+
 
   return element;
 }
