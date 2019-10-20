@@ -10,7 +10,7 @@
     "dev": "webpack --config webpack.dev.js",
     "prod": "webpack --config webpack.prod.js",
     "build": "webpack --config webpack.config.js",
-    "server": "webpack-dev-server",
+    "server": "webpack-dev-server --config webpack.common.js",
     "server1": "node server.js",
     "httpServer": "http-server dist"
   },
