@@ -17,6 +17,7 @@ module.exports = {
     filename: '[name].bundle.[hash:8].js',
 		path: path.resolve(__dirname, 'dist'),
     chunkFilename: '[name].bundle.js', // 决定非入口 chunk 的名称
+		// publicPath: '' // 添加所有资源路径baseURL
 		// 使用 webpack-dev-middleware 
 		// npm install --save-dev express webpack-dev-middleware
 		// publicPath: '/'
@@ -117,15 +118,21 @@ module.exports = {
 			{	// 加载图片
 				// npm install --save-dev file-loader
 				test: /\.(png|svg|jpg|gif)$/,
-				use: [
-					'file-loader'
-				]
+				use: {
+					loader: 'file-loader',
+					options: {
+						outputPath: './img/' // 打包到dist子目录下
+					}
+				}
 			},
 			{	// 加载字体
 				test: /\.(woff|woff2|eot|ttf|otf)$/,
-				use: [
-					'file-loader'
-				]
+				use: {
+					loader: 'file-loader',
+					options: {
+						outputPath: 'fonts/'
+					}
+				}
 			},
 			{	// 加载数据
 				test: /\.(csv|tsv)$/,
@@ -171,14 +178,14 @@ module.exports = {
 			minify: {
 				removeAttributeQuotes: true, // 删除模版中的双引号
 				removeComments: true, // 删除空白符与换行符
-				collapseWhitespace: true, // 压缩成一行
+				// collapseWhitespace: true, // 压缩成一行
 				minifyCSS: true // 压缩内联css
 			}
 		}),
 		
 		// 抽离css
 		new MiniCssExtractPlugin({
-			filename: 'main.css'
+			filename: 'css/main.css'
 		}),
     
     // 防止重复(prevent duplication)
