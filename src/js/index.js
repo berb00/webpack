@@ -18,9 +18,16 @@ import { file, helpers, Person } from './globals.js'; // 全局变量
 var person = new Person("berb00");
 person.sayName();
 
-
-console.log("globaldd", file, helpers, Person);
-console.log('modeee', process.env.NODE_ENV);
+let url = '';
+let devUrl = 'http:localhost:8080';
+let proUrl = 'http://www.baidu.com';
+if (DEV === 'development') {
+  url = devUrl;
+  // console.log('modee', process.env.NODE_ENV);
+} else {
+  url = proUrl;
+}
+console.log('URL________', url);
 
 // Assume we are in the context of `window`
 // this.alert('Hmmm, this probably isn\'t a great idea...');
@@ -40,8 +47,6 @@ function component() {
   btn.innerHTML = 'printMe';
   btn.onclick = printMe;
   element.appendChild(btn);
-
-  console.log(Data, 1);
 
 
   return element;
@@ -81,8 +86,8 @@ document.body.appendChild(lazyLoad());
 fetch('https://jsonplaceholder.typicode.com/users')
   .then(response => response.json())
   .then(json => {
-    console.log('We retrieved some data! AND we\'re confident it will work on a variety of browser distributions.')
-    console.log(json)
+    // console.log('We retrieved some data! AND we\'re confident it will work on a variety of browser distributions.')
+    // console.log(json)
   })
   .catch(error => console.error('Something went wrong when fetching this data: ', error));
 
@@ -90,10 +95,23 @@ fetch('https://jsonplaceholder.typicode.com/users')
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').then(registration => {
-      console.log('SW registered: ', registration);
+      // console.log('SW registered: ', registration);
     }).catch(registrationError => {
       console.log('SW registration failed: ', registrationError);
     });
   });
 }
 
+
+
+
+
+// 跨域请求
+let xhr = new XMLHttpRequest();
+// http:127.0.0.1:8080
+xhr.open('GET', '/api/user', true);
+xhr.onload = function () {
+  console.log('################', xhr.response);
+}
+
+xhr.send();

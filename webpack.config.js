@@ -47,13 +47,22 @@ module.exports = {
 		port: 8080, // 服务器端口 
 		progress: true, // 进度条
     historyApiFallback: true, // 该选项的作用所用404都连接到index.html 
-    proxy: { "/api": "http://localhost:3000"}, // 代理到后端的服务地址，会拦截所有以api开头的请求地址
 		contentBase: path.join(__dirname, "dist"), // 指定运行目录
-		compress: true // gzip压缩
+		compress: true, // gzip压缩
+		proxy: { // 代理到后端的服务地址，会拦截所有以api开头的请求地址
+			'/api': {
+				target: 'http://localhost:3000',
+				pathRewrite: {
+					'/api': ''
+				}
+			}
+		}
 	},
 
-  resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
+	resolve: { // 解析第三方包 common
+		// modules: [path.resolve('node_modules')], // 配置第三方包查找路径
+		// extensions: [ '.tsx', '.ts', '.js', '.css' ], // 添加扩展名 自左向右匹配
+		// alias: {}
   },
 
   module: {
@@ -217,6 +226,11 @@ module.exports = {
 		// 文件开头加上作者版权时间等注释
 		new webpack.BannerPlugin('create by berb00'),
 
+		new webpack.DefinePlugin({
+			DEV: JSON.stringify('development'),
+			FLAG: 'true'
+		}),
+		
     new WorkboxPlugin.GenerateSW({
       // 这些选项帮助 ServiceWorkers 快速启用
       // 不允许遗留任何“旧的” ServiceWorkers
@@ -227,6 +241,7 @@ module.exports = {
 		new CopyWebpackPlugin([
 			{from: './src/util', to: './'}
 		])
+
 	],
 
 	optimization: { // 优化项
