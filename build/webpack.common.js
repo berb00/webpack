@@ -43,7 +43,7 @@ module.exports = {
 	// npm install --save-dev webpack-dev-server
 	devServer: {
     hot: true, // 热更新，无需手动刷新 
-    host: '0.0.0.0', // host地址 
+    host: 'localhost', // host地址 
 		port: 8080, // 服务器端口 
 		progress: true, // 进度条
     historyApiFallback: true, // 该选项的作用所用404都连接到index.html 
