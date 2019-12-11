@@ -5,13 +5,9 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "watch": "webpack --config webpack.config.js --watch",
-    "dev": "webpack --config webpack.dev.js",
-    "prod": "webpack --config webpack.prod.js",
-    "build": "webpack --config webpack.config.js",
-    "server": "webpack-dev-server --config webpack.common.js",
-    "server1": "node server.js",
+    "start": "webpack-dev-server --open --config build/webpack.dev.js",
+    "prod": "webpack --config build/webpack.prod.js",
+    "server": "node build/server.js",
     "httpServer": "http-server dist"
   },
   "keywords": [],
@@ -58,6 +54,7 @@
   "dependencies": {
     "@babel/runtime": "^7.6.3",
     "babel-polyfill": "^6.26.0",
+    "echarts": "^4.4.0",
     "jquery": "^3.4.1",
     "lodash": "^4.17.11",
     "whatwg-fetch": "^3.0.0"
