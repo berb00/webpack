@@ -130,7 +130,7 @@ module.exports = {
 				// npm install --save @babel/runtime
 				test: /\.js$/,
 				include: [resolve('src')],//path.resolve(__dirname, '../src'),
-				exclude: /node_modules/, // 不在该文件下查找js
+				exclude: resolve('node_modules'), // /node_modules/, // 不在该文件下查找js
 				use: {
 					loader: 'babel-loader',
 					options: {
