@@ -145,6 +145,11 @@ module.exports = {
 				include: path.resolve(__dirname, 'src'),
 				exclude: /node_modules/ // 不在该文件下查找js
 			},
+			// {
+			// 	test: /\.js$/,
+			// 	loader: 'babel-loader',
+			// 	// include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
+			// },
 			{	// 加载图片
 				// npm install --save-dev file-loader
 				test: /\.(png|svg|jpg|gif)$/,

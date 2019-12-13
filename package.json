@@ -4,11 +4,14 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open --config build/webpack.dev.js",
-    "prod": "webpack --config build/webpack.prod.js",
+    "build": "node build/build.js",
     "server": "node build/server.js",
-    "httpServer": "http-server dist"
+    "httpServer": "http-server dist",
+    "unit": "jest --config test/unit/jest.conf.js --coverage",
+    "e2e": "node test/e2e/runner.js",
+    "test": "npm run unit && npm run e2e",
+    "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +40,7 @@
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "ora": "^4.0.3",
     "postcss-loader": "^3.0.0",
     "sass": "^1.23.0",
     "sass-loader": "^8.0.0",
