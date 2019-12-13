@@ -129,7 +129,7 @@ module.exports = {
 				// npm install --save-dev @babel/plugin-transform-runtime
 				// npm install --save @babel/runtime
 				test: /\.js$/,
-				include: path.resolve(__dirname, '../src'),
+				include: [resolve('src')],//path.resolve(__dirname, '../src'),
 				exclude: /node_modules/, // 不在该文件下查找js
 				use: {
 					loader: 'babel-loader',
@@ -145,11 +145,6 @@ module.exports = {
 					}
 				}
 			},
-			// {
-			// 	test: /\.js$/,
-			// 	loader: 'babel-loader',
-			// 	// include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
-			// },
 			{	// 加载图片
 				// npm install --save-dev file-loader
 				test: /\.(png|svg|jpg|gif)$/,
