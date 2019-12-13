@@ -1,8 +1,8 @@
 var file = 'blah.txt';
-var helpers = {
-  test: () => { console.log('test something'); },
-  parse: () => { console.log('parse something'); }
-}
+// var helpers = {
+//   test: () => { console.log('test something'); },
+//   parse: () => { console.log('parse something'); }
+// }
 
 function Person (name) {
   this.name = name;
@@ -12,6 +12,6 @@ function Person (name) {
 }
 module.exports = {
   file,
-  helpers,
+  // helpers,
   Person
 }

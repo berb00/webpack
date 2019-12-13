@@ -129,6 +129,8 @@ module.exports = {
 				// npm install --save-dev @babel/plugin-transform-runtime
 				// npm install --save @babel/runtime
 				test: /\.js$/,
+				include: path.resolve(__dirname, '../src'),
+				exclude: /node_modules/, // 不在该文件下查找js
 				use: {
 					loader: 'babel-loader',
 					options: {
@@ -141,9 +143,7 @@ module.exports = {
 							'@babel/plugin-transform-runtime'
 						]
 					}
-				},
-				include: path.resolve(__dirname, 'src'),
-				exclude: /node_modules/ // 不在该文件下查找js
+				}
 			},
 			// {
 			// 	test: /\.js$/,
