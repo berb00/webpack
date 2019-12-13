@@ -6,13 +6,19 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // css抽离
 const OptimizeCss = require('optimize-css-assets-webpack-plugin'); // css压缩 production模式下
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // 压缩js 可能和新版本babel-loader不兼容
-
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // 拷贝文件
 
+const utils = require('./utils')
 
+function resolve (dir) {
+	return path.join(__dirname, '..', dir)
+}
 
 module.exports = {
-	// mode: 'production',
+	context: path.resolve(__dirname, '../'),
+  	entry: {
+		app: path.resolve(__dirname, '../src/js/index.js'),
+	},
 
 	watch: true, // 热重载监听build
 	watchOptions: {
@@ -20,19 +26,17 @@ module.exports = {
 		aggregateTimeout: 500, // 防抖 编辑代码过程中不打包
 		ignored:/node_modules/ // 忽略打包文件
 	},
-  entry: {
-		app: path.resolve(__dirname, '../src/js/index.js'),
-	},
 
-  output: {
-    filename: '[name].bundle.[hash:8].js',
-		path: path.resolve(__dirname, '../dist'),
-    chunkFilename: '[name].bundle.js', // 决定非入口 chunk 的名称
-		// publicPath: '' // 添加所有资源路径baseURL
-		// 使用 webpack-dev-middleware 
-		// npm install --save-dev express webpack-dev-middleware
-		// publicPath: '/'
-  },
+
+  	output: {
+		path: path.resolve(__dirname, '../dist'), 
+		filename: '[name].bundle.[hash:8].js',
+		chunkFilename: '[name].bundle.js', // 决定非入口 chunk 的名称
+			// publicPath: '' // 添加所有资源路径baseURL
+			// 使用 webpack-dev-middleware 
+			// npm install --save-dev express webpack-dev-middleware
+			// publicPath: '/'
+	},
 
 	// 源码映射 会单独生成一个sourcemap文件 报错时会标识错误行号 可以调试源码(生产环境下代码被压缩为一行无法调试)
 	// eval-source-map 不会产生单独的map文件，但显示报错行列位置
@@ -42,11 +46,11 @@ module.exports = {
 	// 使用 webpack-dev-server (webpack --watch需刷新)
 	// npm install --save-dev webpack-dev-server
 	devServer: {
-    hot: true, // 热更新，无需手动刷新 
-    host: 'localhost', // host地址 
+		hot: true, // 热更新，无需手动刷新 
+		host: 'localhost', // host地址 
 		port: 8080, // 服务器端口 
 		progress: true, // 进度条
-    historyApiFallback: true, // 该选项的作用所用404都连接到index.html 
+    	historyApiFallback: true, // 该选项的作用所用404都连接到index.html 
 		contentBase: path.join(__dirname, "../dist"), // 指定运行目录
 		compress: true, // gzip压缩
 		proxy: { // 代理到后端的服务地址，会拦截所有以api开头的请求地址
@@ -60,12 +64,15 @@ module.exports = {
 	},
 
 	resolve: { // 解析第三方包 common
+		extensions: ['.js', '.vue', '.json', '.tsx', '.ts', '.js', '.css'],// 添加扩展名 自左向右匹配
+		alias: {
+		  'vue$': 'vue/dist/vue.esm.js',
+		  '@': resolve('src'),
+		}
 		// modules: [path.resolve('node_modules')], // 配置第三方包查找路径
-		// extensions: [ '.tsx', '.ts', '.js', '.css' ], // 添加扩展名 自左向右匹配
-		// alias: {}
-  },
+  	},
 
-  module: {
+  	module: {
 		rules: [
 			{	// 加载 CSS
 				// npm install --save-dev style-loader css-loader(接续@import)
@@ -167,13 +174,13 @@ module.exports = {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/
-      },
-			{
-				test: /\.xml$/,
-				use: [
-					'xml-loader'
-				]
-      },
+		},
+		{
+			test: /\.xml$/,
+			use: [
+				'xml-loader'
+			]
+		},
       // { // 使用 imports-loader 覆写 this
       //   test: require.resolve('index.js'),
       //   use: 'imports-loader?this=>window'
