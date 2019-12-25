@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import 'babel-polyfill';
+import Es6Promise from 'es6-promise';
 import echarts from 'echarts';
-
-
 import Icon from '@/assets/img/icon.png';
 
 // css
@@ -10,14 +9,20 @@ import '@/style/style.css';
 import '@/style/less.less';
 import '@/style/scss.scss';
 
-
 // import Data from './data.xml';
 import Data from '@/assets/json/data.json';
 import printMe from '@/js/print.js';
 import { file, helpers, Person } from '@/js/globals.js'; // 全局变量
 
+
+Es6Promise.polyfill()
+
+
+
 var person = new Person("berb00");
 person.sayName();
+
+helpers.test();
 
 function component() {
   var element = document.createElement('div');
