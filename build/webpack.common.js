@@ -17,7 +17,7 @@ function resolve (dir) {
 module.exports = {
 	context: path.resolve(__dirname, '../'),
   	entry: {
-		app: path.resolve(__dirname, '../src/js/index.js'),
+		app: path.resolve(__dirname, '../src/index.js'),
 	},
 
 	watch: true, // 热重载监听build
