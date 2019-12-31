@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import 'babel-polyfill';
 import Es6Promise from 'es6-promise';
-import echarts from 'echarts';
+// import echarts from 'echarts';
 import Icon from '@/assets/img/icon.png';
 
 // css
