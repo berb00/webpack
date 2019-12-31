@@ -18,7 +18,8 @@ module.exports = {
           experimentalObjectRestSpread: true,
           jsx: true,
           modules: true
-      }
+      },
+      fix: true
   },
   extends: [
     'standard'
@@ -837,11 +838,11 @@ module.exports = {
       // @fixable function 的小括号之前必须要有空格
       'space-before-function-paren': [
           'error',
-          {
-              anonymous: 'ignore',
-              named: 'never',
-              asyncArrow: 'always'
-          }
+        //   {
+        //       anonymous: 'ignore',
+        //       named: 'never',
+        //       asyncArrow: 'always'
+        //   }
       ],
       // @fixable 小括号内的首尾禁止有空格
       'space-in-parens': [

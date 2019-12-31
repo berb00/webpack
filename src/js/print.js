@@ -1,7 +1,10 @@
-export default function printMe() {
-    console.log('this is print.js!'); 
 
-    
-    // console.error("this is an error from print");
+let printMe = () => {
+
+    console.log('this is print.js!');
+
   }
-  
+
+module.exports = {
+  printMe
+} 

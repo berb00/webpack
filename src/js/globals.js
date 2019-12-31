@@ -1,9 +1,10 @@
-var file = 'blah.txt';
-var helpers = {
+/* eslint-disable */
+
+let file = 'blah.txt';
+let helpers = {
   test: () => { console.log('test something'); },
   parse: () => { console.log('parse something'); }
 }
-
 
 function Person (name) {
   this.name = name;
@@ -11,6 +12,7 @@ function Person (name) {
     console.log("my naxme is ", this.name);
   }
 }
+
 module.exports = {
   file,
   helpers,
