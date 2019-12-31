@@ -22,6 +22,7 @@ module.exports = {
       fix: true
   },
   extends: [
+    'eslint:recommended',
     'standard'
   ],
   globals: {

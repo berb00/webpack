@@ -131,20 +131,28 @@ module.exports = {
 				test: /\.js$/,
 				include: [resolve('src')],//path.resolve(__dirname, '../src'),
 				exclude: resolve('node_modules'), // /node_modules/, // 不在该文件下查找js
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: [
-							'@babel/preset-env' // es6 ->es5
-						],
-						plugins: [
-							["@babel/plugin-proposal-decorators", { "legacy": true }],
-							["@babel/plugin-proposal-class-properties", { "loose" : true }],
-							'@babel/plugin-transform-runtime'
-						]
-						// formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
+				use: [
+					{
+						loader: 'babel-loader',
+						options: {
+							presets: [
+								'@babel/preset-env' // es6 ->es5
+							],
+							plugins: [
+								["@babel/plugin-proposal-decorators", { "legacy": true }],
+								["@babel/plugin-proposal-class-properties", { "loose" : true }],
+								'@babel/plugin-transform-runtime'
+							]
+							// formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
+						}
+					},
+					{
+						loader: 'eslint-loader',
+						options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine 
+							formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
+						}
 					}
-				}
+				]
 			},
 			{	// 加载图片
 				// npm install --save-dev file-loader
