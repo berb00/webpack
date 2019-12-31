@@ -74,22 +74,6 @@ module.exports = {
 
   	module: {
 		rules: [
-			{
-	　　　　　　test: /\.js$/,
-	　　　　　　// 如果你的这个js文件在node_modules里面，就不使用babel-loader了
-	　　　　　　exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-					presets: ['@babel/preset-env']
-					}
-				}
-				// enforce: 'pre', // 编译前检查
-				// include: [resolve('src')], // 指定检查的目录
-				// options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine 
-				// 	formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
-				// }
-	　　　　},
 			{	// 加载 CSS
 				// npm install --save-dev style-loader css-loader(接续@import)
 				// style-loader 把css插入到head标签
@@ -137,7 +121,7 @@ module.exports = {
 					'sass-loader' // scss -> css
 				]
 			},
-			{ // babel转换 
+			{ // 加载JS babel转换 
 				// npm i -D babel-loader @babel/core @babel/preset-env
 				
 				// npm install --save-dev @babel/plugin-proposal-class-properties
@@ -158,6 +142,7 @@ module.exports = {
 							["@babel/plugin-proposal-class-properties", { "loose" : true }],
 							'@babel/plugin-transform-runtime'
 						]
+						// formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
 					}
 				}
 			},
