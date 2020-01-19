@@ -14,6 +14,11 @@ import '@/style/scss.scss';
 import print from '@/js/print.js';
 import { helpers, Person } from '@/js/globals.js'; // 全局变量
 
+import '@/js/amap';
+import '@/route';
+
+
+
 Es6Promise.polyfill();
 
 

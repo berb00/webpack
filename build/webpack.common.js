@@ -274,7 +274,12 @@ module.exports = {
 
 	performance: {
 		hints: false
-	}
+    },
+    
+    externals: {
+        'AMap': 'AMap'
+    },
+      
 
 
 };
