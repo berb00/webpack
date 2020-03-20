@@ -5,9 +5,9 @@ import Es6Promise from 'es6-promise';
 import Icon from '@/assets/img/icon.png';
 
 // css
-import '@/style/style.css';
-import '@/style/less.less';
-import '@/style/scss.scss';
+import '@/assets/css/style.css';
+import '@/assets/css/less.less';
+import '@/assets/css/scss.scss';
 
 // import Data from './data.xml';
 // import Data from '@/assets/json/data.json';
