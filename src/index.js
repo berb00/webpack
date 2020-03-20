@@ -11,8 +11,8 @@ import '@/assets/css/scss.scss';
 
 // import Data from './data.xml';
 // import Data from '@/assets/json/data.json';
-import print from '@/js/print.js';
-import { helpers, Person } from '@/js/globals.js'; // 全局变量
+import print from '@/js/util/print.js';
+import { helpers, Person } from '@/js/util/globals.js'; // 全局变量
 
 import '@/js/map/amap';
 import '@/js/router/route';
@@ -68,12 +68,12 @@ function lazyLoad () {
 
     // Note that because a network request is involved, some indication
     // of loading would need to be shown in a production-level site/app.
-    button.onclick = e => import(/* webpackChunkName: "print" */ '@/js/lazyModule').then(module => {
+    button.onclick = e => import(/* webpackChunkName: "print" */ '@/js/util/lazyModule').then(module => {
         let lazyModule = module.default;
 
         lazyModule();
     });
-
+    
     return element;
 }
 document.body.appendChild(lazyLoad());
