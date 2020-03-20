@@ -14,8 +14,8 @@ import '@/assets/css/scss.scss';
 import print from '@/js/print.js';
 import { helpers, Person } from '@/js/globals.js'; // 全局变量
 
-import '@/js/amap';
-import '@/route';
+import '@/js/map/amap';
+import '@/js/router/route';
 
 
 
@@ -97,9 +97,6 @@ if ('serviceWorker' in navigator) {
         });
     });
 }
-
-
-
 // // 跨域请求
 // let xhr = new XMLHttpRequest();
 // // http:127.0.0.1:8080

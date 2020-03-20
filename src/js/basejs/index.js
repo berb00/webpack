@@ -5,11 +5,6 @@ const string = require('./api/string')
 // Event
 const wind = require('./events/window')
 
-const _ = require('../../Frame/Lodash/lodash.core');
-const lodash = require('../../Frame/Lodash/lodash');
-const util1 = require('../JS/Utils/util_syntax');
-const util2 = require('../JS/Utils/util_business');
-const env = Object.keys(process.env);
 
 main()
 

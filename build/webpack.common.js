@@ -255,7 +255,7 @@ module.exports = {
 		}),
 		
 		new CopyWebpackPlugin([
-			{from: './src/util', to: './'}
+			{from: './src/js/util', to: './'}
 		])
 
 	],
