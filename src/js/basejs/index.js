@@ -3,7 +3,7 @@ const object = require('./api/object')
 const string = require('./api/string')
 
 // Event
-const wind = require('./events/window')
+// const wind = require('./events/window')
 
 
 main()
@@ -11,7 +11,7 @@ main()
 function main () {
     // =====================API====================
 
-    object.test_trim()
+    // object.test_trim()
     // object.test_char()
     // object.test_slice()
     // object.test_search()
