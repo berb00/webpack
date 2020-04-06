@@ -474,6 +474,14 @@ function throttle (fn, delay) {
     };
 }
 
+/**
+ * 返回8位随机码
+ * @returns {string}
+ */
+function getRandom() {
+    return Math.random().toString(36).substring(2, 10);
+}
+
 module.exports = {
     // array
     all,
@@ -570,7 +578,7 @@ module.exports = {
 
     // Other
     debounce,
-    throttle
-
+    throttle,
+    getRandom
 
 };
