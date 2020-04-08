@@ -1,0 +1,39 @@
+Stack                       栈
+Heap                        堆
+Greedy                      贪心算法
+Sort                        排序
+Bit Manipulation            位运算
+Tree                        树
+Depth-first Search          深度优先搜索
+Breadth-first Search        广度优先搜索
+Union Find                  并查集
+Graph                       图
+Design                      设计
+Topological Sort            拓扑排序
+Trie                        字典树
+Binary Indexed Tree         树状数组
+Segment Tree                线段树
+Binary Search Tree          二叉搜索树
+Recursion                   递归
+Brainteaser                 脑筋急转弯
+Memoization                 记忆化
+Queue                       队列
+Minimax                     极小化极大
+Reservoir Sampling          蓄水池抽样
+Geometry                    几何
+                            Map
+Array                       数组
+Hash Table                  哈希表
+Linked List                 链表
+Math                        数学
+Two Pointers                双指针
+String                      字符串
+Binary Search               二分查找
+Divide and Conquer          分治算法
+Dynamic Programming         动态规划
+Backtracking                回溯算法
+                            Random
+                            Rejection Sampling
+                            Sliding Window
+                            Ordered Map
+                            Line Sweep
