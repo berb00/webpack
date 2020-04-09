@@ -31,7 +31,7 @@ function array () {
     所以返回 [0, 1]
 */
 
-function twoSum (nums, target) {
+function twoSum (nums, target) { // M
     nums = nums || [3,3]
     target = target || 6
     let len = nums.length;
