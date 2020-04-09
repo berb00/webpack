@@ -6,6 +6,14 @@ function array () {
     // =====  C  ====
     // temp = twoSum()                      // 1. 两数之和
     temp = removeDuplicates()            // 26. 删除排序数组中的重复项
+    // temp = removeDuplicates1()           // 26. 删除排序数组中的重复项
+
+
+    // =====  B  ====
+    // =====  A  ====
+
+    // =====  M  ====
+
 
 
     console.log('temp: ', temp)
@@ -55,27 +63,62 @@ function twoSum (nums, target) {
 
     你不需要考虑数组中超出新长度后面的元素。
 */
+
 /**
  * @param {number[]} nums
  * @return {number}
+方法：双指针法
+    数组完成排序后(从小到大排列)
+    首先注意数组是有序的，那么重复的元素一定会相邻。
+    要求删除重复元素，实际上就是将不重复的元素移到数组的左侧。
+    
+    放置两个指针
+        i:  慢指针  在前
+        j:  快指针  在后
+    只要 nums[i] == nums[j]，我们就增加 j 以跳过重复项(j 后移一位)。
+    
+    如果不相等，将 j 位置的元素复制到 i+1 位置上，i 后移一位，j 后移 1 位
+    重复上述过程，直到 j 等于数组长度。
+
+    当我们遇到 nums[j] != nums[i]时，跳过重复项的运行已经结束，
+    因此我们必须把它（nums[j]）的值复制到 nums[i+1]。
+    然后递增 i，接着我们将再次重复相同的过程，直到 j 到达数组的末尾为止。
+
+    j - i > 1:
+        数组中没有重复元素时，每次比较时 nums[i] 都不等于 nums[j]，因此就会将 j 指向的元素原地复制一遍，这个操作其实是不必要的
+
+复杂度分析
+    时间复杂度：O(n)，假设数组的长度是 n，那么 i 和 j 分别最多遍历 n 步。
+    空间复杂度：O(1)。
+
  */
 function removeDuplicates (nums) {
     nums = nums || [0,0,1,1,1,2,2,3,3,4]
     let len = nums.length,
-        n = 0
+        i = 0
 
     if (len < 2) return len
-    
-    for(let i = 1; i < len; i++){
-        if(nums[i] != nums[n]) {
-            ++n
-            nums[n] = nums[i]
+    for(let j = 1; j < len; j++){
+        if(nums[j] != nums[i] && j - i > 1) {
+            nums[++i] = nums[j]
         }
     }
 
     console.log('removeDuplicates: ', nums)
-    return n+1;
+    return i + 1;
 }
+
+function removeDuplicates1 (nums) { // 该方法产生了新数组 不是操作原数组
+    nums = nums || [0,0,1,1,1,2,2,3,3,4]
+    let newarr = Array.from(new Set(nums))
+
+    console.log('removeDuplicates: ', newarr)
+    return newarr.length;
+}
+
+
+
+
 
 
 
