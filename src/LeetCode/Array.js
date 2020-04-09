@@ -1,3 +1,18 @@
+array()
+
+function array () {
+    let temp = null
+
+    // =====  C  ====
+    // temp = twoSum()                      // 1. 两数之和
+    temp = removeDuplicates()            // 26. 删除排序数组中的重复项
+
+
+    console.log('temp: ', temp)
+}
+
+
+
 //#######################################   C  ######################################
 /*
 1. 两数之和
@@ -25,7 +40,6 @@ function twoSum (nums, target) {
 
     return []
 }
-// console.log(twoSum())
 
 /*
 26. 删除排序数组中的重复项
@@ -47,7 +61,20 @@ function twoSum (nums, target) {
  */
 function removeDuplicates (nums) {
     nums = nums || [0,0,1,1,1,2,2,3,3,4]
+    let len = nums.length,
+        n = 0
+
+    if (len < 2) return len
     
+    for(let i = 1; i < len; i++){
+        if(nums[i]!=nums[n]){
+            n+=1;
+            nums[n]=nums[i];
+        }
+    }
+
+    console.log('removeDuplicates: ', nums)
+    return n+1;
 }
 
 
