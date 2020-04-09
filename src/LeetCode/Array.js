@@ -67,9 +67,9 @@ function removeDuplicates (nums) {
     if (len < 2) return len
     
     for(let i = 1; i < len; i++){
-        if(nums[i]!=nums[n]){
-            n+=1;
-            nums[n]=nums[i];
+        if(nums[i] != nums[n]) {
+            ++n
+            nums[n] = nums[i]
         }
     }
 
