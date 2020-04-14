@@ -9,7 +9,8 @@ function stack () {
     // temp = calPoints()                    // 682. 棒球比赛
     // temp = backspaceCompare()             // 844. 比较含退格的字符串
     // temp = removeOuterParentheses()       // 1021. 删除最外层的括号
-    temp = removeDuplicates()             // 1021. 删除最外层的括号
+    // temp = removeDuplicates()             // 1047. 删除字符串中的所有相邻重复项
+    // temp = maxSlidingWindow()             // 面试题59 - I. 滑动窗口的最大值
 
 
     // =====  B  ====
@@ -397,6 +398,52 @@ function removeDuplicates (str) {   // M
     return stack.join('')
 };
 
+
+/*
+面试题59 - I. 滑动窗口的最大值
+    给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。
+示例:
+    输入:   nums = [1,3,-1,-3,5,3,6,7], k = 3              输出: [3,3,5,5,6,7] 
+            nums = [1,-1] , k = 1                               [1,-1]
+    解释:
+        滑动窗口的位置                最大值
+        ---------------               -----
+        [1  3  -1] -3  5  3  6  7      3
+        1 [3  -1  -3] 5  3  6  7       3
+        1  3 [-1  -3  5] 3  6  7       5
+        1  3  -1 [-3  5  3] 6  7       5
+        1  3  -1  -3 [5  3  6] 7       6
+        1  3  -1  -3  5 [3  6  7]      7
+*/
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+function maxSlidingWindow (nums, k) { // M 没有用到Stack
+    nums = nums || [1,-1] // [1,3,-1,-3,5,3,6,7]
+    k = k || 1
+    let len = nums.length,
+        arr = []
+    if (!k || !len) return []
+    if (k == 1) return nums
+
+    for (let i = 0; i < len - k + 1; i++) {
+        let windowitem = nums.slice(i, i + k)
+        arr.push(getMax(windowitem))
+    }
+
+    function getMax (arr) {
+        let max = 0,
+            arrlen = arr.length
+        for (let i = 0; i < arrlen; i++) {
+            max > arr[i] ? '' : max = arr[i]
+        }
+        return max
+    }
+    return arr
+};
 
 
 //#######################################   B  ######################################
