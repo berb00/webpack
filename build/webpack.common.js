@@ -277,7 +277,8 @@ module.exports = {
     },
     
     externals: {
-        'AMap': 'AMap'
+        'AMap': 'AMap',
+        jquery: '$'
     },
       
 
@@ -322,3 +323,11 @@ css:
 postcss
 压缩css
 */
+
+
+/**
+ 引入第三方模块的方式:
+    1、expose-loader            使插件暴露到window上
+    2、webpack.providePlugin    给每个模块提供一个插件(如$符)
+    3、引入不打包
+ */
