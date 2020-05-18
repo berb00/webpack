@@ -1,7 +1,7 @@
 // API
-const object = require('./api/object')
-const string = require('./api/string')
-const re = require('./api/re')
+// const object = require('./api/object')
+// const string = require('./api/string')
+// const re = require('./api/re')
 
 // Event
 // const wind = require('./events/window')

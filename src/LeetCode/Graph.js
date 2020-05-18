@@ -4,7 +4,7 @@ function array () {
     let temp = null
 
     // =====  C  ====
-    // temp = findJudge()                 // 997. 找到小镇的法官
+    temp = findJudge()                 // 997. 找到小镇的法官
     temp = gardenNoAdj()               // 1042. 不邻接植花
     // =====  B  ====
     // =====  A  ====
@@ -54,7 +54,7 @@ function findJudge (N, trust) {
     }
 
     for (let i = 1; i <= N; i++) {
-        if (cnt[i] == N - 1) return i
+        if (cnt[i] === N - 1) return i
     }
 
     return -1
@@ -92,12 +92,12 @@ function gardenNoAdj (N, paths) {   // temp
     }
 
     for (let i = 1; i < N; i++) {
-        const col_set = [1, 2, 3, 4]
+        const colSet = [1, 2, 3, 4]
         for (let j = 0; j < table[i].length; j++) {
-            // col_set.erase(color[table[i][j]]);
-            col_set.slice(color[table[i][j]])
+            // colSet.erase(color[table[i][j]]);
+            colSet.slice(color[table[i][j]])
         }
-        color[i] = col_set[0]
+        color[i] = colSet[0]
     }
 
     return color

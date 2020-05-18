@@ -8,7 +8,7 @@ function string () {
     // =====  B  ====
     // =====  A  ====
     // =====  M  ====
-    temp = reverse(str)        // 回文
+    temp = reverse()        // 回文
 
     console.log('temp: ', temp)
 }

@@ -5,6 +5,7 @@ function array () {
 
     // =====  C  ====
     temp = intersection()                 // 349. 两个数组的交集
+    temp = intersect()                 // 350. 两个数组的交集 II
 
     // =====  B  ====
     // =====  A  ====

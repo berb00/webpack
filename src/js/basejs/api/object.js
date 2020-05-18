@@ -1,10 +1,10 @@
-var obja = { a: 1, b: 'str', c: [1, 2, 3] }
+// var obja = { a: 1, b: 'str', c: [1, 2, 3] }
 
 // Object.is()                         比较两个值是否相同。所有 NaN 值都相等（这与==和===不同）。两个值相同的不同对象false
 // Object.assign(obja, objb..)         通过复制一个或多个对象来创建一个新的对象。对像属性都添加到obja上并返回obja
 // Object.create()                     使用指定的原型对象和属性创建一个新对象。
 
-function test_is () {
+function testIs () {
     var a = 10
     var b = 10
     var str1 = 'str'
@@ -23,7 +23,7 @@ function test_is () {
     console.log('test_is-obj', Object.is(obj1, obj2))   // false
     console.log('test_is-arr', Object.is(arr1, arr2))   // false
 }
-function test_assign () {
+function testAssign () {
     var obja = { a: 1, b: 'str', c: [1, 2, 3] }
     var objb = { d: 1, e: 'eee' }
     var temp = {}
@@ -32,7 +32,7 @@ function test_assign () {
 
     console.log('test_assign', temp)
 }
-function test_create () {
+function testCreate () {
     var obja = { a: 1, b: 'str', c: [1, 2, 3] }
     var objb = Object.create(obja)
     var objc = Object.create(null)
@@ -50,14 +50,14 @@ function test_create () {
 // Object.getPrototypeOf()             返回指定对象的原型对象。
 // Object.setPrototypeOf()             设置对象的原型（即内部 [[Prototype]] 属性）到另一个对象或null。。
 
-function test_setPrototypeOf () {
+function testSetPrototypeOf () {
     var obja = { a: 1, b: 'str', c: [1, 2, 3] }
 
     var proto = Object.getPrototypeOf(obja)
     var dict = Object.setPrototypeOf(obja, null)
     var protodict = Object.getPrototypeOf(dict)
 
-    console.log('test_setPrototypeOf-proto', proto, dict, protodict)
+    console.log('testSetPrototypeOf-proto', proto, dict, protodict)
 }
 
 // Object.freeze()                     冻结对象：其他代码不能删除或更改任何属性
@@ -66,7 +66,7 @@ function test_setPrototypeOf () {
 // Object.isFrozen()                   判断对象是否已经冻结。
 // Object.isSealed()                   判断对象是否已经密封。
 // Object.isExtensible()               判断对象是否可扩展。
-function test_freeze () {           // 不可对对象有任何变更操作
+function testFreeze () {           // 不可对对象有任何变更操作
     var obja = { a: 1, b: 'str', c: [1, 2, 3] }
     Object.freeze(obja)
     obja.a = 2          // 不可更改属性
@@ -76,7 +76,7 @@ function test_freeze () {           // 不可对对象有任何变更操作
     console.log('test_freeze', obja)
     console.log('isFrozen', Object.isFrozen(obja))
 }
-function test_seal () {             // 可更改对象属性
+function testSeal () {             // 可更改对象属性
     var obja = { a: 1, b: 'str', c: [1, 2, 3] }
     Object.seal(obja)
     obja.a = 2          // 可更改属性
@@ -86,7 +86,7 @@ function test_seal () {             // 可更改对象属性
     console.log('test_seal', obja)
     console.log('isSealed', Object.isSealed(obja))
 }
-function test_preventExtensions () { // 可删除修改对象属性
+function testPreventExtensions () { // 可删除修改对象属性
     var obja = { a: 1, b: 'str', c: [1, 2, 3] }
     Object.preventExtensions(obja)
     obja.a = 2          // 可更改属性
@@ -100,7 +100,7 @@ function test_preventExtensions () { // 可删除修改对象属性
 // Object.keys()                       返回一个包含所有给定对象自身可枚举属性名称的数组。
 // Object.values()                     返回给定对象自身可枚举值的数组。
 // Object.entries()                    返回给定对象自身可枚举属性的 [key, value] 数组。
-function test_entries () {
+function testEntries () {
     var obja = { a: 1, b: 'str', c: [1, 2, 3] }
     var keys = Object.keys(obja)
     var values = Object.values(obja)
@@ -112,12 +112,12 @@ function test_entries () {
 }
 
 module.exports = {
-    test_is,
-    test_assign,
-    test_create,
-    test_freeze,
-    test_seal,
-    test_preventExtensions,
-    test_entries,
-    test_setPrototypeOf
+    testIs,
+    testAssign,
+    testCreate,
+    testFreeze,
+    testSeal,
+    testPreventExtensions,
+    testEntries,
+    testSetPrototypeOf
 }

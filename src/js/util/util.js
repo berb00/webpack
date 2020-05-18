@@ -15,10 +15,10 @@ const arrayToCSV = (arr, delimiter = ',') =>
 
 // 5.`arrayToHtmlList`：数组转`li`列表 此代码段将数组的元素转换为<li>标签，并将其附加到给定ID的列表中。
 const arrayToHtmlList = (arr, listID) =>
-    (el => (
-        (el = document.querySelector('#' + listID)),
-        (el.innerHTML += arr.map(item => `<li>${item}</li>`).join(''))
-    ))()
+    (el => {
+        el = document.querySelector('#' + listID)
+        el.innerHTML += arr.map(item => `<li>${item}</li>`).join('')
+    }) ()
 
 // 6. `average`：平均数
 const average = (...nums) => nums.reduce((acc, val) => acc + val, 0) / nums.length
@@ -30,7 +30,7 @@ const averageBy = (arr, fn) =>
 
 // 8.`bifurcate`：拆分断言后的数组 可以根据每个元素返回的值，使用reduce()和push() 将元素添加到第二次参数fn中 。
 const bifurcate = (arr, filter) =>
-    arr.reduce((acc, val, i) => (acc[filter[i] ? 0 : 1].push(val), acc), [[], []])
+    arr.reduce((acc, val, i) => (acc[filter[i] ? 0 : 1].push(val)), [[], []])
 // 9. `castArray`：其它类型转数组
 const castArray = val => (Array.isArray(val) ? val : [val])
 
@@ -138,7 +138,6 @@ const defer = (fn, ...args) => setTimeout(fn, 1, ...args)
 
 // 3. `runPromisesInSeries`：运行多个`Promises`
 const runPromisesInSeries = ps => ps.reduce((p, next) => p.then(next), Promise.resolve())
-const delay = d => new Promise(r => setTimeout(r, d))
 
 // 4. `timeTaken`：计算函数执行时间
 const timeTaken = callback => {
@@ -281,7 +280,7 @@ const getDaysDiffBetweenDates = (dateInitial, dateFinal) =>
     (dateFinal - dateInitial) / (1000 * 3600 * 24)
 
 // 5. `is`：检查值是否为特定类型。
-const is = (type, val) => ![, null].includes(val) && val.constructor === type
+const is = (type, val) => val.constructor === type
 
 // 6. `isAfterDate`：检查是否在某日期后
 const isAfterDate = (dateA, dateB) => dateA > dateB
@@ -377,7 +376,7 @@ const insertBefore = (el, htmlString) => el.insertAdjacentHTML('beforebegin', ht
 const isBrowser = () => ![typeof window, typeof document].includes('undefined')
 
 // 14. ` isBrowserTab`：检查当前标签页是否活动
-const isBrowserTabFocused = () => !document.hidden
+const isBrowserTab = () => !document.hidden
 
 // 15. `nodeListToArray`：转换`nodeList`为数组
 const nodeListToArray = nodeList => [...nodeList]

@@ -15,6 +15,7 @@ class RouterClass {
      */
     static init () {
         window.Router = new RouterClass(location.pathname)
+        return window.Router
     }
 
     /**
@@ -36,10 +37,10 @@ class RouterClass {
     }
 }
 
-RouterClass.init()
+const Router = RouterClass.init()
 const ul = document.querySelector('ul')
 const ContentDom = document.querySelector('.content-div')
-const changeContent = content => ContentDom.innerHTML = content
+const changeContent = content => (ContentDom.innerHTML = content)
 
 Router.route('/', () => changeContent('默认页面'))
 Router.route('/page1', () => changeContent('page1页面'))

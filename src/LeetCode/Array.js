@@ -4,9 +4,9 @@ function array () {
     let temp = null
 
     // =====  C  ====
-    // temp = twoSum()                      // 1. 两数之和
-    // temp = removeDuplicates()            // 26. 删除排序数组中的重复项
-    // temp = removeDuplicates1()           // 26. 删除排序数组中的重复项
+    temp = twoSum()                      // 1. 两数之和
+    temp = removeDuplicates()            // 26. 删除排序数组中的重复项
+    temp = removeDuplicates1()           // 26. 删除排序数组中的重复项
     temp = removeElement()               // 27. 移除元素
 
     // =====  B  ====
@@ -35,7 +35,7 @@ function twoSum (nums, target) { // M
 
     for (let i = 0; i < len; i++) {
         for (let j = i + 1; j < len; j++) {
-            if (nums[i] + nums[j] == target) {
+            if (nums[i] + nums[j] === target) {
                 return [i, j]
             }
         }
@@ -94,7 +94,7 @@ function removeDuplicates (nums) {
 
     if (len < 2) return len
     for (let j = 1; j < len; j++) {
-        if (nums[j] != nums[i] && j - i > 1) {
+        if (nums[j] !== nums[i] && j - i > 1) {
             nums[++i] = nums[j]
         }
     }
@@ -140,7 +140,7 @@ function removeElement (nums, val) {
     const len = nums.length
     let i = 0
     for (let j = 0; j < len; j++) {
-        if (nums[j] != val) {
+        if (nums[j] !== val) {
             nums[i] = nums[j]
             i++
         }

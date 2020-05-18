@@ -1,16 +1,16 @@
 stack()
 
 function stack () {
-    const temp = null
+    let temp = null
 
     // =====  C  ====
-    // temp = isValid()                      // 20. 有效的括号
-    // temp = nextGreaterElement()           // 496. 下一个更大元素 I
-    // temp = calPoints()                    // 682. 棒球比赛
-    // temp = backspaceCompare()             // 844. 比较含退格的字符串
-    // temp = removeOuterParentheses()       // 1021. 删除最外层的括号
-    // temp = removeDuplicates()             // 1047. 删除字符串中的所有相邻重复项
-    // temp = maxSlidingWindow()             // 面试题59 - I. 滑动窗口的最大值
+    temp = isValid()                      // 20. 有效的括号
+    temp = nextGreaterElement()           // 496. 下一个更大元素 I
+    temp = calPoints()                    // 682. 棒球比赛
+    temp = backspaceCompare()             // 844. 比较含退格的字符串
+    temp = removeOuterParentheses()       // 1021. 删除最外层的括号
+    temp = removeDuplicates()             // 1047. 删除字符串中的所有相邻重复项
+    temp = maxSlidingWindow()             // 面试题59 - I. 滑动窗口的最大值
 
     // =====  B  ====
     // =====  A  ====
@@ -79,12 +79,12 @@ function isValid (s) {
     for (const i of s) {
         if (dic[i]) { // 开括号入栈
             stack.push(i)
-        } else if (dic[stack.pop()] != i) { // 栈顶开括号字典值 匹配 闭括号
+        } else if (dic[stack.pop()] !== i) { // 栈顶开括号字典值 匹配 闭括号
             return false
         }
     }
 
-    return stack.length == 1
+    return stack.length === 1
 }
 
 /*
@@ -189,7 +189,7 @@ function nextGreaterElement (nums1, nums2) {    // M
             if (nums1[i] < nums2[j]) {
                 arr.push(nums2[j])
                 break
-            } else if (j == len2 - 1) {
+            } else if (j === len2 - 1) {
                 arr.push(-1)
             }
         }
@@ -242,13 +242,13 @@ function nextGreaterElement (nums1, nums2) {    // M
  */
 function calPoints (ops) {
     ops = ops || ['5', '-2', '4', 'C', 'D', '9', '+', '+']
-    const len = ops.length
+    let len = ops.length
     const arr = []   // 存储每轮有效分数的栈
     let sum = 0
     for (let i = 0; i < len; i++) {
         switch (ops[i]) {
             case '+':
-                const len = arr.length
+                len = arr.length
                 arr.push(arr[len - 2] + arr[len - 1])
                 break
             case 'C':
@@ -263,7 +263,7 @@ function calPoints (ops) {
         }
     }
     for (let i = 0; i < arr.length; i++) {
-        arr[i] != -1 ? sum += arr[i] : ''
+        arr[i] !== -1 ? sum += arr[i] : ''
     }
 
     return sum
@@ -302,11 +302,11 @@ function backspaceCompare (S, T) { // M
     const lent = T.length
     const len = lens > lent ? lens : lent
     for (let i = 0; i < len; i++) {
-        S[i] ? S[i] == '#' ? stacks.pop() : stacks.push(S[i]) : ''
-        T[i] ? T[i] == '#' ? stackt.pop() : stackt.push(T[i]) : ''
+        S[i] ? S[i] === '#' ? stacks.pop() : stacks.push(S[i]) : ''
+        T[i] ? T[i] === '#' ? stackt.pop() : stackt.push(T[i]) : ''
     }
 
-    return stacks.join('') == stackt.join('')
+    return stacks.join('') === stackt.join('')
 }
 
 /*
@@ -348,8 +348,8 @@ function removeOuterParentheses (S) {
     let str = ''
 
     for (let i = 1; i < len; i++) {
-        S[i] == '(' ? L++ : R++
-        if (R != L) {
+        S[i] === '(' ? L++ : R++
+        if (R !== L) {
             str += S[i]
         } else {
             i++
@@ -383,7 +383,7 @@ function removeDuplicates (str) {   // M
     const stack = []
 
     for (let i = 0; i < len; i++) {
-        stack[stack.length - 1] == str[i] ? stack.pop() : stack.push(str[i])
+        stack[stack.length - 1] === str[i] ? stack.pop() : stack.push(str[i])
     }
     return stack.join('')
 }
@@ -416,7 +416,7 @@ function maxSlidingWindow (nums, k) { // M 没有用到Stack
     const len = nums.length
     const arr = []
     if (!k || !len) return []
-    if (k == 1) return nums
+    if (k === 1) return nums
 
     for (let i = 0; i < len - k + 1; i++) {
         const windowitem = nums.slice(i, i + k)
