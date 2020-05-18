@@ -276,7 +276,7 @@ module.exports = {
             new UglifyJsPlugin({ // 压缩js
                 cache: true,
                 parallel: true, // 并发打包
-                sourceMap: true // 源码映射 便于调试
+                sourceMap: false // 源码映射 便于调试
             }),
             new OptimizeCss() // 压缩css 压缩css后js不会被压缩，需再次压缩css
 
