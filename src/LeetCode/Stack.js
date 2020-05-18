@@ -1,7 +1,7 @@
 stack()
 
 function stack () {
-    let temp = null
+    const temp = null
 
     // =====  C  ====
     // temp = isValid()                      // 20. 有效的括号
@@ -12,15 +12,12 @@ function stack () {
     // temp = removeDuplicates()             // 1047. 删除字符串中的所有相邻重复项
     // temp = maxSlidingWindow()             // 面试题59 - I. 滑动窗口的最大值
 
-
     // =====  B  ====
     // =====  A  ====
     // =====  M  ====
 
     console.log('temp: ', temp)
 }
-
-
 
 //#######################################   C  ######################################
 /*
@@ -36,8 +33,8 @@ function stack () {
 示例:
     输入: "()"          输出: true
     输入: "()[]{}"      输出: true
-    输入: "{[]}"        输出: true    
-    输入: "{[}]"        输出: false    
+    输入: "{[]}"        输出: true
+    输入: "{[}]"        输出: false
     输入: "(]"          输出: false
     输入: "([)]"        输出: false
 
@@ -71,15 +68,15 @@ function stack () {
 
  */
 function isValid (s) {
-    s = s || "()[]{{}}"
-    let len = s.length,
-    dic = {'{': '}',  '[': ']', '(': ')', '?': '?'},
-    stack = ['?']
+    s = s || '()[]{{}}'
+    const len = s.length
+    const dic = { '{': '}', '[': ']', '(': ')', '?': '?' }
+    const stack = ['?']
 
     if (!len) return true
     if (len % 2) return false
 
-    for (let i of s) {
+    for (const i of s) {
         if (dic[i]) { // 开括号入栈
             stack.push(i)
         } else if (dic[stack.pop()] != i) { // 栈顶开括号字典值 匹配 闭括号
@@ -88,7 +85,7 @@ function isValid (s) {
     }
 
     return stack.length == 1
-};
+}
 
 /*
 设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。
@@ -113,42 +110,40 @@ function isValid (s) {
  */
 function MinStack () {
     this.arr = []
-};
+}
 
-/** 
+/**
  * @param {number} x
  * @return {void}
  */
-MinStack.prototype.push = function(x) {
-    let len = this.arr.length
+MinStack.prototype.push = function (x) {
+    const len = this.arr.length
     this.arr[len] = x
-};
+}
 
 /**
  * @return {void}
  */
-MinStack.prototype.pop = function() {
-    let len = this.arr.length
+MinStack.prototype.pop = function () {
+    const len = this.arr.length
     for (let i = 0; i < len - 1; i++) {
         this.arr[i] = this.arr[i + 1]
     }
-};
+}
 
 /**
  * @return {number}
  */
-MinStack.prototype.top = function() {
+MinStack.prototype.top = function () {
     return this.arr[0]
-};
+}
 
 /**
  * @return {number}
  */
-MinStack.prototype.getMin = function() {
+MinStack.prototype.getMin = function () {
 
-};
-
-
+}
 
 /*
 496. 下一个更大元素 I
@@ -181,15 +176,15 @@ nums1 中数字 x 的下一个更大元素是指 x 在 nums2 中对应位置的�
  * @return {number[]}
  */
 function nextGreaterElement (nums1, nums2) {    // M
-    nums1 = nums1 || [4,1,2,8]
-    nums2 = nums2 || [1,3,4,2,5,6,8,10]
+    nums1 = nums1 || [4, 1, 2, 8]
+    nums2 = nums2 || [1, 3, 4, 2, 5, 6, 8, 10]
 
-    let len1 = nums1.length,
-        len2 = nums2.length,
-        arr = []
-    
+    const len1 = nums1.length
+    const len2 = nums2.length
+    const arr = []
+
     for (let i = 0; i < len1; i++) {
-        let index = nums2.indexOf(nums1[i])
+        const index = nums2.indexOf(nums1[i])
         for (let j = index; j < len2; j++) {
             if (nums1[i] < nums2[j]) {
                 arr.push(nums2[j])
@@ -201,8 +196,7 @@ function nextGreaterElement (nums1, nums2) {    // M
     }
 
     return arr
-};
-
+}
 
 /*
 682. 棒球比赛
@@ -219,7 +213,7 @@ function nextGreaterElement (nums1, nums2) {    // M
 示例 1:
     输入: ["5","2","C","D","+"]
     输出: 30
-    解释: 
+    解释:
         第1轮：你可以得到5分。总和是：5。
         第2轮：你可以得到2分。总和是：7。
         操作1：第2轮的数据无效。总和是：5。
@@ -228,7 +222,7 @@ function nextGreaterElement (nums1, nums2) {    // M
 示例 2:
     输入: ["5","-2","4","C","D","9","+","+"]
     输出: 27
-    解释: 
+    解释:
         第1轮：你可以得到5分。总和是：5。
         第2轮：你可以得到-2分。总数是：3。
         第3轮：你可以得到4分。总和是：7。
@@ -247,14 +241,14 @@ function nextGreaterElement (nums1, nums2) {    // M
  * @return {number}
  */
 function calPoints (ops) {
-    ops = ops || ["5","-2","4","C","D","9","+","+"]
-    let len = ops.length,
-        arr = [],   // 存储每轮有效分数的栈
-        sum = 0
+    ops = ops || ['5', '-2', '4', 'C', 'D', '9', '+', '+']
+    const len = ops.length
+    const arr = []   // 存储每轮有效分数的栈
+    let sum = 0
     for (let i = 0; i < len; i++) {
         switch (ops[i]) {
             case '+':
-                let len = arr.length
+                const len = arr.length
                 arr.push(arr[len - 2] + arr[len - 1])
                 break
             case 'C':
@@ -271,9 +265,9 @@ function calPoints (ops) {
     for (let i = 0; i < arr.length; i++) {
         arr[i] != -1 ? sum += arr[i] : ''
     }
-    
+
     return sum
-};
+}
 
 /*
 844. 比较含退格的字符串
@@ -299,23 +293,21 @@ function calPoints (ops) {
  * @return {boolean}
  */
 function backspaceCompare (S, T) { // M
-    S = S || "ab##"
-    T = T || "c#d#"
+    S = S || 'ab##'
+    T = T || 'c#d#'
 
-    let stacks = [],
-        stackt = [],
-        lens = S.length,
-        lent = T.length,
-        len = lens > lent ? lens : lent
+    const stacks = []
+    const stackt = []
+    const lens = S.length
+    const lent = T.length
+    const len = lens > lent ? lens : lent
     for (let i = 0; i < len; i++) {
         S[i] ? S[i] == '#' ? stacks.pop() : stacks.push(S[i]) : ''
         T[i] ? T[i] == '#' ? stackt.pop() : stackt.push(T[i]) : ''
     }
 
     return stacks.join('') == stackt.join('')
-};
-
-
+}
 
 /*
 1021. 删除最外层的括号
@@ -343,7 +335,6 @@ function backspaceCompare (S, T) { // M
 
 */
 
-
 /**
  * @param {string} S
  * @return {string}
@@ -351,24 +342,23 @@ function backspaceCompare (S, T) { // M
 function removeOuterParentheses (S) {
     S = S || '(()())(())(()(()))'
 
-    let len = S.length,
-        L=1,    // 开括号数
-        R=0,    // 闭括号数
-        str = ''
+    const len = S.length
+    let L = 1    // 开括号数
+    let R = 0    // 闭括号数
+    let str = ''
 
-    for(let i=1;i<len;i++){
-        S[i] == '(' ? L++ : R++;
+    for (let i = 1; i < len; i++) {
+        S[i] == '(' ? L++ : R++
         if (R != L) {
             str += S[i]
-        } else {    
-            i++ 
-            L=1
-            R=0
+        } else {
+            i++
+            L = 1
+            R = 0
         }
     }
-    return str;
-};
-
+    return str
+}
 
 /*
 1047. 删除字符串中的所有相邻重复项
@@ -387,23 +377,22 @@ function removeOuterParentheses (S) {
  * @return {string}
  */
 function removeDuplicates (str) {   // M
-    str = str || "ammbccbaca"
+    str = str || 'ammbccbaca'
 
-    let len = str.length,
-        stack = []
+    const len = str.length
+    const stack = []
 
     for (let i = 0; i < len; i++) {
-        stack[stack.length - 1] == str[i]  ? stack.pop() : stack.push(str[i])
+        stack[stack.length - 1] == str[i] ? stack.pop() : stack.push(str[i])
     }
     return stack.join('')
-};
-
+}
 
 /*
 面试题59 - I. 滑动窗口的最大值
     给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。
 示例:
-    输入:   nums = [1,3,-1,-3,5,3,6,7], k = 3              输出: [3,3,5,5,6,7] 
+    输入:   nums = [1,3,-1,-3,5,3,6,7], k = 3              输出: [3,3,5,5,6,7]
             nums = [1,-1] , k = 1                               [1,-1]
     解释:
         滑动窗口的位置                最大值
@@ -422,29 +411,28 @@ function removeDuplicates (str) {   // M
  * @return {number[]}
  */
 function maxSlidingWindow (nums, k) { // M 没有用到Stack
-    nums = nums || [1,-1] // [1,3,-1,-3,5,3,6,7]
+    nums = nums || [1, -1] // [1,3,-1,-3,5,3,6,7]
     k = k || 1
-    let len = nums.length,
-        arr = []
+    const len = nums.length
+    const arr = []
     if (!k || !len) return []
     if (k == 1) return nums
 
     for (let i = 0; i < len - k + 1; i++) {
-        let windowitem = nums.slice(i, i + k)
+        const windowitem = nums.slice(i, i + k)
         arr.push(getMax(windowitem))
     }
 
     function getMax (arr) {
-        let max = 0,
-            arrlen = arr.length
+        let max = 0
+        const arrlen = arr.length
         for (let i = 0; i < arrlen; i++) {
             max > arr[i] ? '' : max = arr[i]
         }
         return max
     }
     return arr
-};
-
+}
 
 //#######################################   B  ######################################
 

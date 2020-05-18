@@ -13,8 +13,6 @@ function array () {
     console.log('temp: ', temp)
 }
 
-
-
 //#######################################   C  ######################################
 /*
 997. 找到小镇的法官
@@ -41,27 +39,26 @@ function array () {
  * @return {number}
  */
 function findJudge (N, trust) {
-    N = N || 3;
-    trust = trust || [[1,2],[2,3]];
-    let len = trust.length,
-        cnt = [];               //  统计出入度
+    N = N || 3
+    trust = trust || [[1, 2], [2, 3]]
+    const len = trust.length
+    const cnt = []               //  统计出入度
 
     for (let i = 0; i < N + 1; i++) {
-        cnt[i] = 0;
+        cnt[i] = 0
     }
 
     for (let i = 0; i < len; i++) {
-        cnt[trust[i][0]]--;     // 出度--
-        cnt[trust[i][1]]++;     // 入度++
-    }
-    
-    for ( let i = 1; i <= N; i++ ) {
-        if ( cnt[i] == N-1 ) return i;
+        cnt[trust[i][0]]--     // 出度--
+        cnt[trust[i][1]]++     // 入度++
     }
 
-    return -1;
-};
+    for (let i = 1; i <= N; i++) {
+        if (cnt[i] == N - 1) return i
+    }
 
+    return -1
+}
 
 /*
 1042. 不邻接植花
@@ -84,27 +81,27 @@ paths[i] = [x, y] 描述了花园 x 到花园 y 的双向路径。
  * @return {number[]}
  */
 function gardenNoAdj (N, paths) {   // temp
-    N = N || 4;
-    paths = paths || [[1,2],[2,3],[3,4],[4,1],[1,3],[2,4]];
-    let len = paths.length,
-        table = [],
-        color = []
+    N = N || 4
+    paths = paths || [[1, 2], [2, 3], [3, 4], [4, 1], [1, 3], [2, 4]]
+    const len = paths.length
+    const table = []
+    const color = []
 
     for (let i = 0; i < len; i++) {
-        table[Math.max(paths[i][0],paths[i][1])-1].push(Math.min(paths[i][0],paths[i][1])-1);
+        table[Math.max(paths[i][0], paths[i][1]) - 1].push(Math.min(paths[i][0], paths[i][1]) - 1)
     }
 
     for (let i = 1; i < N; i++) {
-        let col_set = [1,2,3,4];
+        const col_set = [1, 2, 3, 4]
         for (let j = 0; j < table[i].length; j++) {
             // col_set.erase(color[table[i][j]]);
-            col_set.slice(color[table[i][j]]);
+            col_set.slice(color[table[i][j]])
         }
-        color[i] = col_set[0];
+        color[i] = col_set[0]
     }
 
-    return color;
-};
+    return color
+}
 
 //#######################################   B  ######################################
 

@@ -1,56 +1,50 @@
-import _ from 'lodash';
-import 'babel-polyfill';
-import Es6Promise from 'es6-promise';
+import _ from 'lodash'
+import 'babel-polyfill'
+import Es6Promise from 'es6-promise'
 // import echarts from 'echarts';
-import Icon from '@/assets/img/icon.png';
+import Icon from '@/assets/img/icon.png'
 
 // css
-import '@/assets/css/style.css';
-import '@/assets/css/less.less';
-import '@/assets/css/scss.scss';
+import '@/assets/css/style.css'
+import '@/assets/css/less.less'
+import '@/assets/css/scss.scss'
 
 // import Data from './data.xml';
 // import Data from '@/assets/json/data.json';
-import print from '@/js/util/print.js';
-import { helpers, Person } from '@/js/util/globals.js'; // 全局变量
+import print from '@/js/util/print.js'
+import { helpers, Person } from '@/js/util/globals.js' // 全局变量
 
-import '@/js/map/amap';
-import '@/js/router/route';
+import '@/js/map/amap'
+import '@/js/router/route'
 
+Es6Promise.polyfill()
 
+const person = new Person('berb00')
+person.sayName()
 
-Es6Promise.polyfill();
-
-
-
-let person = new Person('berb00');
-person.sayName();
-
-helpers.test();
+helpers.test()
 
 function component () {
-    let element = document.createElement('div');
-    let btn = document.createElement('button');
+    const element = document.createElement('div')
+    const btn = document.createElement('button')
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ')
+    element.classList.add('hello')
 
-    let myIcon = new Image();
-    myIcon.src = Icon;
-    element.appendChild(myIcon);
+    const myIcon = new Image()
+    myIcon.src = Icon
+    element.appendChild(myIcon)
 
+    btn.innerHTML = 'printMe'
+    btn.onclick = print.printMe
+    element.appendChild(btn)
 
-    btn.innerHTML = 'printMe';
-    btn.onclick = print.printMe;
-    element.appendChild(btn);
-
-
-    return element;
+    return element
 }
 
-document.body.appendChild(component());
+document.body.appendChild(component())
 
-dynamicImport();
+dynamicImport()
 function dynamicImport () {
     /* webpackChunkName: "jquery" */
     // return import('jquery').then($ => {
@@ -59,25 +53,24 @@ function dynamicImport () {
 }
 
 function lazyLoad () {
-    let element = document.createElement('div');
-    let button = document.createElement('button');
-    let br = document.createElement('br');
-    button.innerHTML = 'lazyModule';
-    element.appendChild(br);
-    element.appendChild(button);
+    const element = document.createElement('div')
+    const button = document.createElement('button')
+    const br = document.createElement('br')
+    button.innerHTML = 'lazyModule'
+    element.appendChild(br)
+    element.appendChild(button)
 
     // Note that because a network request is involved, some indication
     // of loading would need to be shown in a production-level site/app.
     button.onclick = e => import(/* webpackChunkName: "print" */ '@/js/util/lazyModule').then(module => {
-        let lazyModule = module.default;
+        const lazyModule = module.default
 
-        lazyModule();
-    });
-    
-    return element;
+        lazyModule()
+    })
+
+    return element
 }
-document.body.appendChild(lazyLoad());
-
+document.body.appendChild(lazyLoad())
 
 fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
@@ -85,17 +78,16 @@ fetch('https://jsonplaceholder.typicode.com/users')
     // console.log('We retrieved some data! AND we\'re confident it will work on a letiety of browser distributions.')
     // console.log(json)
     })
-    .catch(error => console.error('Something went wrong when fetching this data: ', error));
-
+    .catch(error => console.error('Something went wrong when fetching this data: ', error))
 
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').then(registration => {
-            console.log('SW registered: ', registration);
+            console.log('SW registered: ', registration)
         }).catch(registrationError => {
-            console.log('SW registration failed: ', registrationError);
-        });
-    });
+            console.log('SW registration failed: ', registrationError)
+        })
+    })
 }
 // // 跨域请求
 // let xhr = new XMLHttpRequest();
@@ -106,8 +98,6 @@ if ('serviceWorker' in navigator) {
 // }
 
 // xhr.send();
-
-
 
 // function updatePosition () {
 //     myChart.setOption({

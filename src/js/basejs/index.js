@@ -6,7 +6,6 @@ const re = require('./api/re')
 // Event
 // const wind = require('./events/window')
 
-
 main()
 
 function main () {
@@ -27,14 +26,7 @@ function main () {
     // object.test_setPrototypeOf()
 
     // String
-    
+
     // RegExp
-
-
-
-
-
-
-
 
 }

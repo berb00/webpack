@@ -13,8 +13,6 @@ function array () {
     console.log('temp: ', temp)
 }
 
-
-
 //#######################################   C  ######################################
 /**
 349. 两个数组的交集
@@ -30,10 +28,10 @@ function array () {
  * @return {number[]}
  */
 function intersection (nums1, nums2) {  // M
-    nums1 = nums1 || [4,9,5]
-    nums2 = nums2 || [9,4,9,8,4]
-    let len1 = nums1.length,
-        arr = []
+    nums1 = nums1 || [4, 9, 5]
+    nums2 = nums2 || [9, 4, 9, 8, 4]
+    const len1 = nums1.length
+    const arr = []
     for (let i = 0; i < len1; i++) {
         if (nums2.includes(nums1[i]) && !arr.includes(nums1[i])) {
             arr.push(nums1[i])
@@ -41,7 +39,7 @@ function intersection (nums1, nums2) {  // M
     }
 
     return arr
-};
+}
 
 /*
 350. 两个数组的交集 II
@@ -67,8 +65,7 @@ function intersection (nums1, nums2) {  // M
  */
 function intersect (nums1, nums2) {
 
-};
-
+}
 
 //#######################################   B  ######################################
 

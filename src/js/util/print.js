@@ -1,13 +1,9 @@
 
-let printMe = () => {
-
-    console.log('this is print.js!');
-
-};
-
-
+const printMe = () => {
+    console.log('this is print.js!')
+}
 
 module.exports = {
     printMe
-};
+}
 

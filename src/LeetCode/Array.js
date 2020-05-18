@@ -9,15 +9,12 @@ function array () {
     // temp = removeDuplicates1()           // 26. 删除排序数组中的重复项
     temp = removeElement()               // 27. 移除元素
 
-
     // =====  B  ====
     // =====  A  ====
     // =====  M  ====
 
     console.log('temp: ', temp)
 }
-
-
 
 //#######################################   C  ######################################
 /*
@@ -32,9 +29,9 @@ function array () {
 */
 
 function twoSum (nums, target) { // M
-    nums = nums || [3,3]
+    nums = nums || [3, 3]
     target = target || 6
-    let len = nums.length;
+    const len = nums.length
 
     for (let i = 0; i < len; i++) {
         for (let j = i + 1; j < len; j++) {
@@ -54,7 +51,7 @@ function twoSum (nums, target) { // M
 
 示例:
     给定数组 nums = [1,1,2]
-    函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。 
+    函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。
 
     给定 nums = [0,0,1,1,1,2,2,3,3,4]
     函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
@@ -69,12 +66,12 @@ function twoSum (nums, target) { // M
     数组完成排序后(从小到大排列)
     首先注意数组是有序的，那么重复的元素一定会相邻。
     要求删除重复元素，实际上就是将不重复的元素移到数组的左侧。
-    
+
     放置两个指针
         i:  慢指针  在前
         j:  快指针  在后
     只要 nums[i] == nums[j]，我们就增加 j 以跳过重复项(j 后移一位)。
-    
+
     如果不相等，将 j 位置的元素复制到 i+1 位置上，i 后移一位，j 后移 1 位
     重复上述过程，直到 j 等于数组长度。
 
@@ -91,30 +88,30 @@ function twoSum (nums, target) { // M
 
  */
 function removeDuplicates (nums) {
-    nums = nums || [0,0,1,1,1,2,2,3,3,4]
-    let len = nums.length,
-        i = 0
+    nums = nums || [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+    const len = nums.length
+    let i = 0
 
     if (len < 2) return len
-    for(let j = 1; j < len; j++){
-        if(nums[j] != nums[i] && j - i > 1) {
+    for (let j = 1; j < len; j++) {
+        if (nums[j] != nums[i] && j - i > 1) {
             nums[++i] = nums[j]
         }
     }
 
     console.log('removeDuplicates: ', nums)
-    return i + 1;
+    return i + 1
 }
 
 function removeDuplicates1 (nums) { // 该方法产生了新数组 不是操作原数组
-    nums = nums || [0,0,1,1,1,2,2,3,3,4]
-    let newarr = Array.from(new Set(nums))
+    nums = nums || [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+    const newarr = Array.from(new Set(nums))
 
     console.log('removeDuplicates: ', newarr)
-    return newarr.length;
+    return newarr.length
 }
 
-/* 
+/*
 27. 移除元素
 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
 不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。
@@ -136,25 +133,22 @@ function removeDuplicates1 (nums) { // 该方法产生了新数组 不是操作�
  * @param {number} val
  * @return {number}
 
-
  */
 function removeElement (nums, val) {
-    nums = nums || [0,1,2,2,3,0,4,2]    //  [3,2,2,3] 
+    nums = nums || [0, 1, 2, 2, 3, 0, 4, 2]    //  [3,2,2,3]
     val = val || 2
-    let len = nums.length,
-        i = 0;
+    const len = nums.length
+    let i = 0
     for (let j = 0; j < len; j++) {
         if (nums[j] != val) {
-            nums[i] = nums[j];
-            i++;
+            nums[i] = nums[j]
+            i++
         }
     }
-    
+
     console.log('removeElement: ', nums)
-    return i;
-};
-
-
+    return i
+}
 
 //#######################################   B  ######################################
 
