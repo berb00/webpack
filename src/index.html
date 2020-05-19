@@ -8,14 +8,28 @@
   <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.5&key=9de7017db8ad08b6a654671178d8792f&plugin=AMap.DistrictSearch&plugin=AMap.MarkerClusterer"></script>
 </head>
 <body>
-  <div id="aaa"></div>
-  <div id="amap"></div>
-  <div class="content-div"></div>
-  <ul>
-    <li><a href="/">/</a></li>
-    <li><a href="/page1">page1</a></li>
-    <li><a href="/page2">page2</a></li>
-  </ul>
+    <div id="app">
+        <div class="app_item">
+            <div class="rotate"></div>
+        </div>
+        <div class="app_item" id="amap"></div>
+        <div class="app_item content-div"></div>
+        <div class="app_item">
+            <ul>
+                <li><a href="/">/</a></li>
+                <li><a href="/page1">page1</a></li>
+                <li><a href="/page2">page2</a></li>
+            </ul>
+        </div>
+        <div class="app_item">
+            <div class="imgtest"></div>
+        </div>
+        <div class="app_item">
+            <div class="lazyLoad"></div>
+        </div>
+    </div>
+  
+
   <script>
     console.log("UA", navigator.userAgent);  
   </script>

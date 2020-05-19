@@ -42,7 +42,7 @@ function component () {
     return element
 }
 
-document.body.appendChild(component())
+document.getElementsByClassName('imgtest')[0].appendChild(component())
 
 dynamicImport()
 function dynamicImport () {
@@ -70,67 +70,5 @@ function lazyLoad () {
 
     return element
 }
-document.body.appendChild(lazyLoad())
+document.getElementsByClassName('lazyLoad')[0].appendChild(lazyLoad())
 
-fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response => response.json())
-    .then(json => {
-    // console.log('We retrieved some data! AND we\'re confident it will work on a letiety of browser distributions.')
-    // console.log(json)
-    })
-    .catch(error => console.error('Something went wrong when fetching this data: ', error))
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').then(registration => {
-            console.log('SW registered: ', registration)
-        }).catch(registrationError => {
-            console.log('SW registration failed: ', registrationError)
-        })
-    })
-}
-// // 跨域请求
-// let xhr = new XMLHttpRequest();
-// // http:127.0.0.1:8080
-// xhr.open('GET', '/api/user', true);
-// xhr.onload = function () {
-//   console.log('################', xhr.response);
-// }
-
-// xhr.send();
-
-// function updatePosition () {
-//     myChart.setOption({
-//         graphic: echarts.util.map(data, function (item, dataIndex) {
-//             return {
-//                 position: myChart.convertToPixel('grid', item)
-//             };
-//         })
-//     });
-// }
-
-// function showTooltip (dataIndex) {
-//     myChart.dispatchAction({
-//         type: 'showTip',
-//         seriesIndex: 0,
-//         dataIndex: dataIndex
-//     });
-// }
-
-// function hideTooltip (dataIndex) {
-//     myChart.dispatchAction({
-//         type: 'hideTip'
-//     });
-// }
-
-// function onPointDragging (dataIndex, dx, dy) {
-//     data[dataIndex] = myChart.convertFromPixel('grid', this.position);
-
-//     // Update data
-//     myChart.setOption({
-//         series: [{
-//             id: 'a',
-//             data: data
-//         }]
-//     });
-// }
