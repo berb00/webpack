@@ -31,8 +31,8 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: '[name].bundle.[hash:8].js',
-        chunkFilename: '[name].bundle.js' // 决定非入口 chunk 的名称
+        filename: '[name].bundle.[hash:8].js'
+        // chunkFilename: '[name].bundle.js' // 决定非入口 chunk 的名称
         // publicPath: '' // 添加所有资源路径baseURL
         // 使用 webpack-dev-middleware
         // npm install --save-dev express webpack-dev-middleware
@@ -274,6 +274,9 @@ module.exports = {
     optimization: { // 优化项
         minimizer: [
             new UglifyJsPlugin({ // 压缩js
+                test: /\.js(\?.*)?$/i,
+                // include: /\/includes/,
+                // exclude: /\/excludes/,
                 cache: true,
                 parallel: true, // 并发打包
                 sourceMap: false // 源码映射 便于调试
@@ -290,7 +293,9 @@ module.exports = {
     externals: {
         'AMap': 'AMap',
         jquery: '$'
-    }
+    },
+
+    target: 'node'
 
 }
 

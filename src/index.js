@@ -12,6 +12,7 @@ import '@/assets/css/scss.scss'
 // import Data from './data.xml';
 // import Data from '@/assets/json/data.json';
 import print from '@/js/util/print.js'
+import * as util from '@/js/util/util.js'
 import { helpers, Person } from '@/js/util/globals.js' // 全局变量
 
 import '@/js/map/amap'
@@ -23,6 +24,8 @@ const person = new Person('berb00')
 person.sayName()
 
 helpers.test()
+
+console.log(util)
 
 function component () {
     const element = document.createElement('div')
