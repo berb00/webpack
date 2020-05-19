@@ -15,18 +15,19 @@ function resolve (dir) {
 }
 
 module.exports = {
+    target: 'node',
+
+    watch: true, // 热重载监听build
+
+    // 源码映射 会单独生成一个sourcemap文件 报错时会标识错误行号 可以调试源码(生产环境下代码被压缩为一行无法调试)
+    // eval-source-map 不会产生单独的map文件，但显示报错行列位置
+    // cheap-module-source-map
+    devtool: 'source-map',
+
     context: path.resolve(__dirname, '../'),
 
     entry: {
         app: path.resolve(__dirname, '../src/index.js')
-    },
-
-    watch: true, // 热重载监听build
-
-    watchOptions: {
-        poll: 1000, // 每秒检查一次变动
-        aggregateTimeout: 500, // 防抖 编辑代码过程中不打包
-        ignored: /node_modules/ // 忽略打包文件
     },
 
     output: {
@@ -39,10 +40,11 @@ module.exports = {
         // publicPath: '/'
     },
 
-    // 源码映射 会单独生成一个sourcemap文件 报错时会标识错误行号 可以调试源码(生产环境下代码被压缩为一行无法调试)
-    // eval-source-map 不会产生单独的map文件，但显示报错行列位置
-    // cheap-module-source-map
-    devtool: 'source-map',
+    watchOptions: {
+        poll: 1000, // 每秒检查一次变动
+        aggregateTimeout: 500, // 防抖 编辑代码过程中不打包
+        ignored: /node_modules/ // 忽略打包文件
+    },
 
     // 使用 webpack-dev-server (webpack --watch需刷新)
     // npm install --save-dev webpack-dev-server
@@ -263,11 +265,20 @@ module.exports = {
             // 不允许遗留任何“旧的” ServiceWorkers
             clientsClaim: true,
             skipWaiting: true
-        }),
+        })
 
-        new CopyWebpackPlugin([
-            { from: './src/js/util', to: './' }
-        ])
+        // 在webpack中拷贝文件和文件夹
+        // new CopyWebpackPlugin([
+        //     {
+        //         // from: './src/js/util',  // 要拷贝的源文件
+        //         // to: './',               // 要拷贝到的目标文件夹
+        //         // toType: '',             // file 或者 dir        可选，默认是文件
+        //         // force: '',              // 强制覆盖前面的插件    可选，默认是文件
+        //         // context: '',            // specific、context    可选，默认base
+        //         // flatten: '',            // 只拷贝指定的文件      可以用模糊匹配
+        //         // ignore: ''              // 忽略拷贝指定的文件    可以模糊匹配
+        //     }
+        // ])
 
     ],
 
@@ -293,10 +304,7 @@ module.exports = {
     externals: {
         'AMap': 'AMap',
         jquery: '$'
-    },
-
-    target: 'node'
-
+    }
 }
 
 /*
