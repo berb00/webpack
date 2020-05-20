@@ -9,7 +9,6 @@ console.log(sayHello(user))
 
 
 // 基本数据类型
-
 function baseData () {
     // boolean
     let bool1: boolean = true
@@ -63,6 +62,22 @@ function baseData () {
     let num10: string | number
     num10 = 'seven'
     num10 = 7
-    
 
+
+}
+
+function baseInterface () {
+    interface Person {          // 定义一个接口
+        name: string
+        tel: number             // 必选属性
+        age?: number            // 可选属性 
+        [propName: string]: any // 可以添加任意属性
+        readonly id: number     // 只读属性
+    }
+
+    let berb: Person = {        // 定义一个变量
+        id: 111,
+        name: 'berb',
+        tel: 1111
+    }
 }
