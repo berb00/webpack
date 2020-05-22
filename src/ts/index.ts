@@ -66,6 +66,7 @@ function baseData () {
 
 }
 
+// 对象的类型--接口
 function baseInterface () {
     interface Person {          // 定义一个接口
         name: string
@@ -81,3 +82,39 @@ function baseInterface () {
         tel: 1111
     }
 }
+
+
+// 数组
+function baseArray () {
+    let arr0: any[] = [1, 5, 'fsdfs', {name: 'fsdf'}]
+    let arr1: number[] = [1, 2, 4, 5]       // 只允许存储number类型值
+
+    // 数组泛型
+    let arr2: Array<number> = [1, 2, 5, 3]
+
+    //接口描述数组
+    interface numArray {
+        [index: number]: number
+    }
+    let arr3: numArray = [1, 2, 3, 5]
+
+}
+
+// 函数声明(参数数量、参数类型、返回类型都是确定的)
+function sum(x: number, y: number): number {
+    return x + y;
+}
+
+// 函数表达式1(mySum1进行类型推断)
+let mySum1 = function (x: number, y: number): number {
+    return x + y;
+}
+
+// 函数表达式2(手动给mySum2添加类型)   // 不是箭头函数
+let mySum2: (x: number, y: number) => number = function (x: number, y: number): number {
+    return x + y;
+}
+
+
+
+
