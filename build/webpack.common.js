@@ -206,7 +206,7 @@ module.exports = {
             {
                 // 前置(在执行编译之前去执行eslint-loader检查代码规范，有报错就不执行编译)
                 enforce: 'pre',
-                test: /.(js|jsx)$/,
+                test: /.(js|tx|jsx)$/,
                 loader: 'eslint-loader',
                 exclude: [
                     path.join(__dirname, '../node_modules')
