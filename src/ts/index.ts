@@ -3,6 +3,8 @@ function sayHello (person: string) {
     return temp
 }
 
+
+
 const user = 'berb00'
 console.log(sayHello(user))
 
