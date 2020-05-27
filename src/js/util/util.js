@@ -1,3 +1,4 @@
+
 // Array###########################
 
 // 1. `all`：布尔全等判断
@@ -333,8 +334,8 @@ const bottomVisible = () =>
 
 // // 2. `Create Directory`：检查创建目录
 // // 此代码段调用fs模块的existsSync()检查目录是否存在，如果不存在，则mkdirSync()创建该目录。
-// const fs = require('fs')
-// const createDirIfNotExists = dir => (!fs.existsSync(dir) ? fs.mkdirSync(dir) : undefined)
+const fs = require('fs')
+const createDirIfNotExists = dir => (!fs.existsSync(dir) ? fs.mkdirSync(dir) : undefined)
 
 // 3. `currentURL`：返回当前链接`url`
 const currentURL = () => window.location.href
@@ -547,7 +548,7 @@ module.exports = {
 
     // Brower
     bottomVisible,
-    // createDirIfNotExists,
+    createDirIfNotExists,
     currentURL,
     distance,
     elementContains,

@@ -1,4 +1,6 @@
 const path = require('path')
+const config = require('../config')
+const utils = require('./utils')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -26,6 +28,7 @@ module.exports = {
 
     context: path.resolve(__dirname, '../'),
 
+    // 入口文件
     entry: {
         app: path.resolve(__dirname, '../src/index.js')
     },
@@ -37,7 +40,11 @@ module.exports = {
         // publicPath: '' // 添加所有资源路径baseURL
         // 使用 webpack-dev-middleware
         // npm install --save-dev express webpack-dev-middleware
-        publicPath: '/'
+
+        // 输出解析文件的目录，url 相对于 HTML 页面(生成的html文件中，css和js等静态文件的url前缀)
+        publicPath: process.env.NODE_ENV === 'production'
+            ? config.build.assetsPublicPath
+            : config.dev.assetsPublicPath
     },
 
     watchOptions: {
@@ -67,10 +74,11 @@ module.exports = {
     },
 
     resolve: { // 解析第三方包 common
+        // 指定哪些类型的文件可以引用的时候省略后缀名
         extensions: ['.js', '.vue', '.json', '.tsx', '.ts', '.js', '.css'], // 添加扩展名 自左向右匹配
-        alias: {
+        alias: {                            // 别名，在引入文件的时候可以使用
             'vue$': 'vue/dist/vue.esm.js',
-            '@': resolve('src')
+            '@': resolve('src')             // 可以在引入文件的时候使用@符号引入src文件夹中的文件
         }
         // modules: [path.resolve('node_modules')], // 配置第三方包查找路径
     },
@@ -168,11 +176,13 @@ module.exports = {
                 }
             },
             {	// 加载字体
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                test: /\.(woff|woff2|eot|ttf|otf)(\?.*)?$/,
                 use: {
                     loader: 'file-loader',
                     options: {
-                        outputPath: 'fonts/'
+                        outputPath: 'fonts/',
+                        limit: 10000,
+                        name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
                     }
                 }
             },
@@ -304,6 +314,20 @@ module.exports = {
     externals: {
         'AMap': 'AMap',
         jquery: '$'
+    },
+
+    // 这些选项用于配置polyfill或mock某些node.js全局变量和模块。
+    // 这可以使最初为nodejs编写的代码可以在浏览器端运行
+    node: {
+        // 每个属性都是nodejs全局变量或模块的名称
+        // false表示什么都不提供。设置成empty则表示提供一个空对象
+        // 如果获取此对象的代码，可能会因为获取不到此对象而触发ReferenceError错误
+        setImmediate: false,
+        dgram: 'empty',
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+        child_process: 'empty'
     }
 }
 
