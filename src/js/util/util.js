@@ -40,8 +40,8 @@ const compact = arr => arr.filter(Boolean)
 // 11. `countOccurrences`：检测数值出现次数
 const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0)
 
-// 12. `deepFlatten`：递归扁平化数组
-const deepFlatten = arr => [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)))
+// // 12. ##ERROR       `deepFlatten`：递归扁平化数组     ##ERROR
+// const deepFlatten = arr => [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)))
 
 // 13. `difference`：寻找差异 此代码段查找两个数组之间的差异。
 const difference = (a, b) => {
@@ -65,8 +65,8 @@ const dropWhile = (arr, func) => {
 const flatten = (arr, depth = 1) =>
     arr.reduce((a, v) => a.concat(depth > 1 && Array.isArray(v) ? flatten(v, depth - 1) : v), [])
 
-// 17. `indexOfAll`：返回数组中某值的所有索引 此代码段可用于获取数组中某个值的所有索引，如果此值中未包含该值，则返回一个空数组。
-const indexOfAll = (arr, val) => arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), [])
+// // 17. ##ERROR  `indexOfAll`：返回数组中某值的所有索引 此代码段可用于获取数组中某个值的所有索引，如果此值中未包含该值，则返回一个空数组。
+// const indexOfAll = (arr, val) => arr.reduce((acc, el, i) => (el === val ? [...acc, i] : acc), [])
 
 // 18. `intersection`：两数组的交集
 const intersection = (a, b) => {
@@ -83,8 +83,8 @@ const intersectionBy = (a, b, fn) => {
 // 20. `intersectionWith`：先比较后返回交集
 const intersectionWith = (a, b, comp) => a.filter(x => b.findIndex(y => comp(x, y)) !== -1)
 
-// 21. `minN`：返回指定长度的升序数组
-const minN = (arr, n = 1) => [...arr].sort((a, b) => a - b).slice(0, n)
+// // 21. ##ERROR  `minN`：返回指定长度的升序数组
+// const minN = (arr, n = 1) => [...arr].sort((a, b) => a - b).slice(0, n)
 
 // 22. `negate`：根据条件反向筛选
 const negate = func => (...args) => !func(...args)
@@ -96,32 +96,32 @@ const randomIntArrayInRange = (min, max, n = 1) =>
 // 24. `sample`：在指定数组中获取随机数
 const sample = arr => arr[Math.floor(Math.random() * arr.length)]
 
-// 25. `sampleSize`：在指定数组中获取指定长度的随机数
-// 此代码段可用于从数组中获取指定长度的随机数，直至穷尽数组。使用Fisher-Yates算法对数组中的元素进行随机选择。
-const sampleSize = ([...arr], n = 1) => {
-    let m = arr.length
-    while (m) {
-        const i = Math.floor(Math.random() * m--);
-        [arr[m], arr[i]] = [arr[i], arr[m]]
-    }
-    return arr.slice(0, n)
-}
+// // 25. ##ERROR   `sampleSize`：在指定数组中获取指定长度的随机数
+// // 此代码段可用于从数组中获取指定长度的随机数，直至穷尽数组。使用Fisher-Yates算法对数组中的元素进行随机选择。
+// const sampleSize = ([...arr], n = 1) => {
+//     let m = arr.length
+//     while (m) {
+//         const i = Math.floor(Math.random() * m--);
+//         [arr[m], arr[i]] = [arr[i], arr[m]]
+//     }
+//     return arr.slice(0, n)
+// }
 
-// 26. `shuffle`：“洗牌” 数组 此代码段使用Fisher-Yates算法随机排序数组的元素。
-const shuffle = ([...arr]) => {
-    let m = arr.length
-    while (m) {
-        const i = Math.floor(Math.random() * m--);
-        [arr[m], arr[i]] = [arr[i], arr[m]]
-    }
-    return arr
-}
+// // 26. ##ERROR       `shuffle`：“洗牌” 数组 此代码段使用Fisher-Yates算法随机排序数组的元素。
+// const shuffle = ([...arr]) => {
+//     let m = arr.length
+//     while (m) {
+//         const i = Math.floor(Math.random() * m--);
+//         [arr[m], arr[i]] = [arr[i], arr[m]]
+//     }
+//     return arr
+// }
 
-// 27. `nest`：根据`parent_id`生成树结构（阿里一面真题） 根据每项的parent_id，生成具体树形结构的对象。
-const nest = (items, id = null, link = 'parent_id') =>
-    items
-        .filter(item => item[link] === id)
-        .map(item => ({ ...item, children: nest(items, item.id) }))
+// // 27. ##ERROR       `nest`：根据`parent_id`生成树结构（阿里一面真题） 根据每项的parent_id，生成具体树形结构的对象。
+// const nest = (items, id = null, link = 'parent_id') =>
+//     items
+//         .filter(item => item[link] === id)
+//         .map(item => ({ ...item, children: nest(items, item.id) }))
 
 // Function ####################################
 // 1.`attempt`：捕获函数运行异常 该代码段执行一个函数，返回结果或捕获的错误对象。
@@ -193,19 +193,19 @@ const once = fn => {
     }
 }
 
-// 8.`flattenObject`：以键的路径扁平化对象
-// 使用递归。
-// 利用Object.keys(obj)联合Array.prototype.reduce()，以每片叶子节点转换为扁平的路径节点。
-// 如果键的值是一个对象，则函数使用调用适当的自身prefix以创建路径Object.assign()。
-// 否则，它将适当的前缀键值对添加到累加器对象。
-// prefix除非您希望每个键都有一个前缀，否则应始终省略第二个参数。
-const flattenObject = (obj, prefix = '') =>
-    Object.keys(obj).reduce((acc, k) => {
-        const pre = prefix.length ? prefix + '.' : ''
-        if (typeof obj[k] === 'object') Object.assign(acc, flattenObject(obj[k], pre + k))
-        else acc[pre + k] = obj[k]
-        return acc
-    }, {})
+// // 8.##ERROR     `flattenObject`：以键的路径扁平化对象
+// // 使用递归。
+// // 利用Object.keys(obj)联合Array.prototype.reduce()，以每片叶子节点转换为扁平的路径节点。
+// // 如果键的值是一个对象，则函数使用调用适当的自身prefix以创建路径Object.assign()。
+// // 否则，它将适当的前缀键值对添加到累加器对象。
+// // prefix除非您希望每个键都有一个前缀，否则应始终省略第二个参数。
+// const flattenObject = (obj, prefix = '') =>
+//     Object.keys(obj).reduce((acc, k) => {
+//         const pre = prefix.length ? prefix + '.' : ''
+//         if (typeof obj[k] === 'object') Object.assign(acc, flattenObject(obj[k], pre + k))
+//         else acc[pre + k] = obj[k]
+//         return acc
+//     }, {})
 
 // 9. `unflattenObject`：以键的路径展开对象 与上面的相反，展开对象。
 // 这个的用途，在做Tree组件或复杂表单时取值非常舒服。
@@ -230,16 +230,16 @@ const unflattenObject = obj =>
 // 1.`byteSize`：返回字符串的字节长度
 const byteSize = str => new Blob([str]).size
 
-// 2. `capitalize`：首字母大写
-const capitalize = ([first, ...rest]) =>
-    first.toUpperCase() + rest.join('')
+// // 2. ##ERROR    `capitalize`：首字母大写
+// const capitalize = ([first, ...rest]) =>
+//     first.toUpperCase() + rest.join('')
 
 // 3. `capitalizeEveryWord`：每个单词首字母大写
 const capitalizeEveryWord = str => str.replace(/\b[a-z]/g, char => char.toUpperCase())
 
-// 4. `decapitalize`：首字母小写
-const decapitalize = ([first, ...rest]) =>
-    first.toLowerCase() + rest.join('')
+// // 4. ##ERROR    `decapitalize`：首字母小写
+// const decapitalize = ([first, ...rest]) =>
+//     first.toLowerCase() + rest.join('')
 
 // 5. `luhnCheck`：银行卡号码校验（`luhn`算法）
 // Luhn算法的实现，用于验证各种标识号，例如信用卡号，IMEI号，国家提供商标识号等。
@@ -295,18 +295,18 @@ const tomorrow = () => {
     return t.toISOString().split('T')[0]
 }
 
-// 9. `equals`：全等判断
-// 在两个变量之间进行深度比较以确定它们是否全等。
-// 此代码段精简的核心在于Array.prototype.every()的使用。
-const equals = (a, b) => {
-    if (a === b) return true
-    if (a instanceof Date && b instanceof Date) return a.getTime() === b.getTime()
-    if (!a || !b || (typeof a !== 'object' && typeof b !== 'object')) return a === b
-    if (a.prototype !== b.prototype) return false
-    const keys = Object.keys(a)
-    if (keys.length !== Object.keys(b).length) return false
-    return keys.every(k => equals(a[k], b[k]))
-}
+// // 9. ##ERROR    `equals`：全等判断
+// // 在两个变量之间进行深度比较以确定它们是否全等。
+// // 此代码段精简的核心在于Array.prototype.every()的使用。
+// const equals = (a, b) => {
+//     if (a === b) return true
+//     if (a instanceof Date && b instanceof Date) return a.getTime() === b.getTime()
+//     if (!a || !b || (typeof a !== 'object' && typeof b !== 'object')) return a === b
+//     if (a.prototype !== b.prototype) return false
+//     const keys = Object.keys(a)
+//     if (keys.length !== Object.keys(b).length) return false
+//     return keys.every(k => equals(a[k], b[k]))
+// }
 
 // Number #########################
 // 1. `randomIntegerInRange`：生成指定范围的随机整数
@@ -331,10 +331,10 @@ const bottomVisible = () =>
     document.documentElement.clientHeight + window.scrollY >=
   (document.documentElement.scrollHeight || document.documentElement.clientHeight)
 
-// 2. `Create Directory`：检查创建目录
-// 此代码段调用fs模块的existsSync()检查目录是否存在，如果不存在，则mkdirSync()创建该目录。
-const fs = require('fs')
-const createDirIfNotExists = dir => (!fs.existsSync(dir) ? fs.mkdirSync(dir) : undefined)
+// // 2. `Create Directory`：检查创建目录
+// // 此代码段调用fs模块的existsSync()检查目录是否存在，如果不存在，则mkdirSync()创建该目录。
+// const fs = require('fs')
+// const createDirIfNotExists = dir => (!fs.existsSync(dir) ? fs.mkdirSync(dir) : undefined)
 
 // 3. `currentURL`：返回当前链接`url`
 const currentURL = () => window.location.href
@@ -371,15 +371,15 @@ const insertAfter = (el, htmlString) => el.insertAdjacentHTML('afterend', htmlSt
 // 12.`insertBefore`：在指定元素之前插入新元素
 const insertBefore = (el, htmlString) => el.insertAdjacentHTML('beforebegin', htmlString)
 
-// 13. `isBrowser`：检查是否为浏览器环境
-// 此代码段可用于确定当前运行时环境是否为浏览器。这有助于避免在服务器（节点）上运行前端模块时出错。
-const isBrowser = () => ![typeof window, typeof document].includes('undefined')
+// // 13. ##ERROR       `isBrowser`：检查是否为浏览器环境
+// // 此代码段可用于确定当前运行时环境是否为浏览器。这有助于避免在服务器（节点）上运行前端模块时出错。
+// const isBrowser = () => ![typeof window, typeof document].includes('undefined')
 
 // 14. ` isBrowserTab`：检查当前标签页是否活动
 const isBrowserTab = () => !document.hidden
 
-// 15. `nodeListToArray`：转换`nodeList`为数组
-const nodeListToArray = nodeList => [...nodeList]
+// // 15. ##ERROR      `nodeListToArray`：转换`nodeList`为数组
+// const nodeListToArray = nodeList => [...nodeList]
 
 // 16. `Random Hexadecimal Color Code`：随机十六进制颜色
 const randomHexColorCode = () => {
@@ -417,17 +417,17 @@ const getScrollPosition = (el = window) => ({
     y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop
 })
 
-// 21. `size`：获取不同类型变量的长度
-// 这个的实现非常巧妙，利用Blob类文件对象的特性，获取对象的长度。
-// 另外，多重三元运算符，是真香。
-const size = val =>
-    (Array.isArray(val)
-        ? val.length
-        : val && typeof val === 'object'
-            ? val.size || val.length || Object.keys(val).length
-            : typeof val === 'string'
-                ? new Blob([val]).size
-                : 0)
+// // 21. ##ERROR   `size`：获取不同类型变量的长度
+// // 这个的实现非常巧妙，利用Blob类文件对象的特性，获取对象的长度。
+// // 另外，多重三元运算符，是真香。
+// const size = val =>
+//     (Array.isArray(val)
+//         ? val.length
+//         : val && typeof val === 'object'
+//             ? val.size || val.length || Object.keys(val).length
+//             : typeof val === 'string'
+//                 ? new Blob([val]).size
+//                 : 0)
 
 // 22. `escapeHTML`：转义`HTML` 用来防XSS攻击啦。
 const escapeHTML = str =>
@@ -490,22 +490,22 @@ module.exports = {
     castArray,
     compact,
     countOccurrences,
-    deepFlatten,
+    // deepFlatten,         // ##ERROR
     difference,
     differenceBy,
     dropWhile,
     flatten,
-    indexOfAll,
+    // indexOfAll,          // ##ERROR
     intersection,
     intersectionBy,
     intersectionWith,
-    minN,
+    // minN,                // ##ERROR
     negate,
     randomIntArrayInRange,
     sample,
-    sampleSize,
-    shuffle,
-    nest,
+    // sampleSize,          // ##ERROR
+    // shuffle,             // ##ERROR
+    // nest,                // ##ERROR
 
     // Function
     attempt,
@@ -515,14 +515,14 @@ module.exports = {
     createEventHub,
     memoize,
     once,
-    flattenObject,
+    // flattenObject,       // ##ERROR
     unflattenObject,
 
     // String
     byteSize,
-    capitalize,
+    // capitalize,          // ##ERROR
     capitalizeEveryWord,
-    decapitalize,
+    // decapitalize,        // ##ERROR
     luhnCheck,
     splitLines,
     stripHTMLTags,
@@ -536,7 +536,7 @@ module.exports = {
     isAfterDate,
     isBeforeDate,
     tomorrow,
-    equals,
+    // equals,              // ##ERROR
 
     // Number
     randomIntegerInRange,
@@ -547,7 +547,7 @@ module.exports = {
 
     // Brower
     bottomVisible,
-    createDirIfNotExists,
+    // createDirIfNotExists,
     currentURL,
     distance,
     elementContains,
@@ -558,15 +558,15 @@ module.exports = {
     httpsRedirect,
     insertAfter,
     insertBefore,
-    isBrowser,
+    // isBrowser,               // ##ERROR
     detectDeviceType,
     isBrowserTab,
-    nodeListToArray,
+    // nodeListToArray,         // ##ERROR
     randomHexColorCode,
     scrollToTop,
     smoothScroll,
     getScrollPosition,
-    size,
+    // size,                    // ##ERROR
     escapeHTML,
 
     // Other

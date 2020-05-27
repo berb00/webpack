@@ -15,7 +15,7 @@ function resolve (dir) {
 }
 
 module.exports = {
-    target: 'node',
+    // target: 'node',
 
     watch: true, // 热重载监听build
 
@@ -32,12 +32,12 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: '[name].bundle.[hash:8].js'
+        filename: '[name].bundle.[hash:8].js',
         // chunkFilename: '[name].bundle.js' // 决定非入口 chunk 的名称
         // publicPath: '' // 添加所有资源路径baseURL
         // 使用 webpack-dev-middleware
         // npm install --save-dev express webpack-dev-middleware
-        // publicPath: '/'
+        publicPath: '/'
     },
 
     watchOptions: {
@@ -49,14 +49,14 @@ module.exports = {
     // 使用 webpack-dev-server (webpack --watch需刷新)
     // npm install --save-dev webpack-dev-server
     devServer: {
-        hot: true, // 热更新，无需手动刷新
-        host: 'localhost', // host地址
-        port: 8080, // 服务器端口
-        progress: true, // 进度条
-        historyApiFallback: true, // 该选项的作用所用404都连接到index.html
-        contentBase: path.join(__dirname, '../dist'), // 指定运行目录
-        compress: true, // gzip压缩
-        proxy: { // 代理到后端的服务地址，会拦截所有以api开头的请求地址
+        hot: true,                                      // 热更新，无需手动刷新
+        host: 'localhost',                              // host地址
+        port: 8080,                                     // 服务器端口
+        progress: true,                                 // 进度条
+        historyApiFallback: true,                       // 该选项的作用所用404都连接到index.html
+        contentBase: path.join(__dirname, '../dist'),   // 指定运行目录
+        compress: true,                                 // gzip压缩
+        proxy: {                                        // 代理到后端的服务地址，会拦截所有以api开头的请求地址
             '/api': {
                 target: 'http://localhost:3000',
                 pathRewrite: {
