@@ -8,6 +8,7 @@ import Icon from '@/assets/img/icon.png'
 import '@/assets/css/style.css'
 import '@/assets/css/less.less'
 import '@/assets/css/scss.scss'
+import '@/assets/font/iconfont.css'
 
 // import Data from './data.xml';
 // import Data from '@/assets/json/data.json';

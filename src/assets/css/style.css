@@ -2,7 +2,7 @@
 
 @font-face {
 	font-family: 'MyFont';
-	src:  url('../font/icomoon.woff') format('woff');
+	src:  url('../font/iconfont.woff') format('woff');
 				/* url('./my-font.woff') format('woff'); */
 	font-weight: 600;
 	font-style: normal;
