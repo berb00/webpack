@@ -484,6 +484,10 @@ function getRandom () {
 * @params callback 打印完后的回调
 * */
 function print (obj, callback) {
+    const $ = require('jquery')
+    if (!$ || !$.print) {
+        return false
+    }
     $(obj).print({
         globalStyles: false, //是否包含父文档的样式，默认为true
         mediaPrint: false, //是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
@@ -593,6 +597,7 @@ module.exports = {
     // Other
     debounce,
     throttle,
-    getRandom
+    getRandom,
+    print
 
 }
