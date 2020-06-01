@@ -478,6 +478,26 @@ function getRandom () {
     return Math.random().toString(36).substring(2, 10)
 }
 
+/*
+* 打印
+* @params obj 要打印的元素节点
+* @params callback 打印完后的回调
+* */
+function print (obj, callback) {
+    $(obj).print({
+        globalStyles: false, //是否包含父文档的样式，默认为true
+        mediaPrint: false, //是否包含media='print'的链接标签。会被globalStyles选项覆盖，默认为false
+        stylesheet: null, //外部样式表的URL地址，默认为null
+        noPrintSelector: '.no-print', //不想打印的元素的jQuery选择器，默认为".no-print"
+        iframe: true, //是否使用一个iframe来替代打印表单的弹出窗口，true为在本页面进行打印，false就是说新开一个页面打印，默认为true
+        append: null, //将内容添加到打印内容的后面
+        prepend: null, //将内容添加到打印内容的前面，可以用来作为要打印内容
+        deferred: $.Deferred(function () {
+            callback && callback()
+        })//回调函数
+    })
+}
+
 module.exports = {
     // array
     all,
