@@ -1,9 +1,12 @@
 import _ from 'lodash'
 import 'babel-polyfill'
 import Es6Promise from 'es6-promise'
+import Keil from 'keil'
 // import echarts from 'echarts';
 import Icon from '@/assets/img/icon.png'
 
+const keil = new Keil()
+console.log('keil', keil.add(10, 2))
 // css
 import '@/assets/css/style.css'
 import '@/assets/css/less.less'
