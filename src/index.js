@@ -1,12 +1,9 @@
 import _ from 'lodash'
 import 'babel-polyfill'
 import Es6Promise from 'es6-promise'
-import Keil from 'keil'
 // import echarts from 'echarts';
 import Icon from '@/assets/img/icon.png'
 
-const keil = new Keil()
-console.log('keil', keil.add(10, 2))
 // css
 import '@/assets/css/style.css'
 import '@/assets/css/less.less'
@@ -14,13 +11,16 @@ import '@/assets/css/scss.scss'
 import '@/assets/font/iconfont.css'
 
 // import Data from './data.xml';
-// import Data from '@/assets/json/data.json';
+import Data from '@/assets/json/data.json'
 import print from '@/js/util/print.js'
 import util from '@/js/util/util.js'
 import { helpers, Person } from '@/js/util/globals.js' // 全局变量
 
 import '@/js/map/amap'
 import '@/js/router/route'
+import '@/js/keil/index'
+
+// =============================================
 
 Es6Promise.polyfill()
 
@@ -29,7 +29,7 @@ person.sayName()
 
 helpers.test()
 
-console.log(util)
+console.log(Data, util)
 
 function component () {
     const element = document.createElement('div')
