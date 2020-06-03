@@ -1,3 +1,5 @@
-import keil from 'keil'
+import Keil from 'keil'
 
-console.log(keil)
+const keildemo = new Keil()
+console.log('keildemo', keildemo)
+console.log('keildemo-add', keildemo.add(8, 12))
