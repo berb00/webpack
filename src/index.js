@@ -16,9 +16,7 @@ import print from '@/js/util/print.js'
 import util from '@/js/util/util.js'
 import { helpers, Person } from '@/js/util/globals.js' // 全局变量
 
-import '@/js/map/amap'
 import '@/js/router/route'
-import '@/js/keil/index'
 
 // =============================================
 
